@@ -1,5 +1,6 @@
+import SiteFooter from '../components/SiteFooter.jsx'
 import { useState } from 'react'
-import { ArrowDown, ArrowRight, ArrowUpRight, Box, Check, ChevronRight, Code2, Copy, Gift, Layers3, Palette, Sparkles, Type } from 'lucide-react'
+import { ArrowUpRight, Box, Check, ChevronRight, Code2, Copy, Gift, Layers3, Palette, Sparkles, Type } from 'lucide-react'
 import { Avatar, Badge, Button, Card, Checkbox, Divider, FeatureCard, GiftCard, Input, LogoCloud, Progress, SectionHeading, SegmentedControl, Select, StatCard, StepList, Switch, Tabs, TestimonialCard, Textarea } from '../../components/ui'
 import './playground.css'
 
@@ -31,7 +32,7 @@ export default function Playground() {
 
   return <div className="playground-shell">
     <aside className="sidebar">
-      <a className="brand" href="#top"><span className="brand__mark">h</span><span>hommio<small>DESIGN SYSTEM</small></span></a>
+      <a className="brand" href="#top"><span className="brand__mark"><img src="/assets/hommio-h-mark.png" alt=""/></span><span>hommio<small>DESIGN SYSTEM</small></span></a>
       <div className="sidebar__label">WORKSPACE</div>
       <nav className="side-nav">
         <button className={activeNav === 'Overview' ? 'active' : ''} onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setActiveNav('Overview') }}><Layers3 size={16}/> Overview</button>
@@ -47,22 +48,22 @@ export default function Playground() {
     </aside>
 
     <main className="main-content" id="top">
-      <header className="topbar"><div className="breadcrumbs">Hommio <ChevronRight size={14}/> <span>Playground</span></div><div className="topbar__right"><span className="live-label"><i/> All components</span><Button size="sm" variant="dark" onClick={() => scrollTo('components')}>Browse library <ArrowDown size={14}/></Button></div></header>
+      <header className="topbar"><div className="breadcrumbs">Hommio <ChevronRight size={14}/> <span>Playground</span></div><div className="topbar__right"><span className="live-label"><i/> All components</span><Button size="sm" variant="dark" onClick={() => scrollTo('components')}>Browse library</Button></div></header>
 
       <div className="page-wrap">
         <section className="intro">
-          <div className="intro__text"><Badge tone="blue"><Sparkles size={12}/> HOMMIO UI · VERSION 1.0</Badge><h1>Thoughtful by<br/><em>design.</em></h1><p>A shared visual language for gifting experiences. Warm, clear, and made to scale with every page.</p><div className="intro__actions"><Button onClick={() => scrollTo('components')}>Explore components <ArrowRight size={16}/></Button><button className="text-link" onClick={() => scrollTo('tokens')}>View design tokens <ArrowDown size={14}/></button></div></div>
+          <div className="intro__text"><Badge tone="blue"><Sparkles size={12}/> HOMMIO UI · VERSION 1.0</Badge><h1>Thoughtful by<br/><em>design.</em></h1><p>A shared visual language for gifting experiences. Warm, clear, and made to scale with every page.</p><div className="intro__actions"><Button onClick={() => scrollTo('components')}>Explore components</Button><button className="text-link" onClick={() => scrollTo('tokens')}>View design tokens</button></div></div>
           <div className="intro__visual"><div className="orbit orbit--one"/><div className="orbit orbit--two"/><div className="gift-stack"><div className="gift-stack__back"><Gift size={25}/></div><div className="gift-stack__front"><div className="gift-stack__ribbon"/><span>made<br/>for you</span><small>HOMMIO · A LITTLE SOMETHING</small></div></div><div className="float-chip float-chip--top"><span className="float-chip__icon">✳</span> Made with care</div><div className="float-chip float-chip--bottom"><span className="mini-check"><Check size={12}/></span> 20 reusable pieces</div></div>
         </section>
 
         <section className="overview-strip"><div><strong>20</strong><span>UI components</span></div><div><strong>8</strong><span>Color tokens</span></div><div><strong>4px</strong><span>Spacing base</span></div><div className="overview-strip__note">One consistent foundation<br/>for every experience <ArrowUpRight size={15}/></div></section>
 
-        <section className="token-section" id="tokens"><div className="section-topline"><SectionHeading eyebrow="01 · FOUNDATION" title="Design tokens" description="A small, intentional palette keeps every experience feeling unmistakably Hommio."/><button className="section-link" onClick={() => navigator.clipboard?.writeText('src/styles/tokens.css')}>View tokens <ArrowUpRight size={15}/></button></div><div className="color-grid">{tokens.map(([name, color, hex]) => <button key={name} className="color-swatch" onClick={() => navigator.clipboard?.writeText(hex)}><span style={{ background: color }}/><strong>{name}</strong><small>{hex}</small></button>)}</div><div className="token-details"><div className="type-token" id="type"><div className="detail-label">TYPE · DM SANS</div><strong>Thoughtful gifts<br/>make lasting moments.</strong><span>Display / 46px / Medium</span></div><div className="space-token"><div className="detail-label">SPACING · 4PX BASE</div><div className="space-token__bars"><i style={{width:16}}/><i style={{width:32}}/><i style={{width:48}}/><i style={{width:64}}/><i style={{width:80}}/></div><span>4 · 8 · 12 · 16 · 20</span></div><div className="radius-token"><div className="detail-label">RADIUS · SOFT EDGES</div><div><i/><i/><i/></div><span>10 · 16 · 24 px</span></div></div></section>
+        <section className="token-section" id="tokens"><div className="section-topline"><SectionHeading eyebrow="FOUNDATION" title="Design tokens" description="A small, intentional palette keeps every experience feeling unmistakably Hommio."/><button className="section-link" onClick={() => navigator.clipboard?.writeText('src/styles/tokens.css')}>View tokens</button></div><div className="color-grid">{tokens.map(([name, color, hex]) => <button key={name} className="color-swatch" onClick={() => navigator.clipboard?.writeText(hex)}><span style={{ background: color }}/><strong>{name}</strong><small>{hex}</small></button>)}</div><div className="token-details"><div className="type-token" id="type"><div className="detail-label">TYPE · DM SANS</div><strong>Thoughtful gifts<br/>make lasting moments.</strong><span>Display / 46px / Medium</span></div><div className="space-token"><div className="detail-label">SPACING · 4PX BASE</div><div className="space-token__bars"><i style={{width:16}}/><i style={{width:32}}/><i style={{width:48}}/><i style={{width:64}}/><i style={{width:80}}/></div><span>4 · 8 · 12 · 16 · 20</span></div><div className="radius-token"><div className="detail-label">RADIUS · SOFT EDGES</div><div><i/><i/><i/></div><span>10 · 16 · 24 px</span></div></div></section>
 
-        <section className="component-section" id="components"><div className="section-topline"><SectionHeading eyebrow="02 · COMPONENT LIBRARY" title="Made to work together" description="Each component lives in its own folder under /components/ui and is ready to use across the product."/><label className="component-search"><Code2 size={15}/><input placeholder="Find a component…" value={query} onChange={e => setQuery(e.target.value)}/><kbd>⌘ K</kbd></label></div>
+        <section className="component-section" id="components"><div className="section-topline"><SectionHeading eyebrow="COMPONENT LIBRARY" title="Made to work together" description="Each component lives in its own folder under /components/ui and is ready to use across the product."/><label className="component-search"><Code2 size={15}/><input placeholder="Find a component…" value={query} onChange={e => setQuery(e.target.value)}/><kbd>⌘ K</kbd></label></div>
           <div className="component-summary"><span>SHOWING <b>{visibleCatalog.length}</b> OF {catalog.length} COMPONENTS</span><span>Import from <code>@/components/ui</code></span></div>
           <div className="specimen-grid">
-            {visibleCatalog.some(x => x.name === 'Button') && <Spec id="Button" title="Button" meta="ACTIONS · 4 VARIANTS"><div className="demo-row"><Button>Talk to us <ArrowRight size={15}/></Button><Button variant="dark">Explore gifts</Button><Button variant="secondary">Secondary</Button><Button variant="ghost">Learn more</Button></div><div className="demo-row demo-row--separated"><Button size="sm">Small</Button><Button size="md">Medium</Button><Button size="lg">Large</Button><Button disabled>Disabled</Button></div></Spec>}
+            {visibleCatalog.some(x => x.name === 'Button') && <Spec id="Button" title="Button" meta="ACTIONS · 4 VARIANTS"><div className="demo-row"><Button>Talk to us</Button><Button variant="dark">Explore gifts</Button><Button variant="secondary">Secondary</Button><Button variant="ghost">Learn more</Button></div><div className="demo-row demo-row--separated"><Button size="sm">Small</Button><Button size="md">Medium</Button><Button size="lg">Large</Button><Button disabled>Disabled</Button></div></Spec>}
             {visibleCatalog.some(x => x.name === 'Badge') && <Spec id="Badge" title="Badge" meta="ACTIONS · 5 TONES"><div className="demo-row"><Badge>Pro account</Badge><Badge tone="neutral">Coming soon</Badge><Badge tone="sage">Active</Badge><Badge tone="rose">Limited</Badge><Badge tone="dark">New</Badge></div></Spec>}
             {visibleCatalog.some(x => x.name === 'Card') && <Spec id="Card" title="Card" meta="SURFACES · 4 TONES"><div className="mini-card-grid"><Card><b>Paper</b><span>For most content surfaces</span></Card><Card tone="soft"><b>Soft</b><span>For nested sections</span></Card><Card tone="blue"><b>Blue</b><span>For a gentle highlight</span></Card><Card tone="dark"><b>Ink</b><span>For rich contrast</span></Card></div></Spec>}
             {visibleCatalog.some(x => x.name === 'Avatar') && <Spec id="Avatar" title="Avatar" meta="PEOPLE · 3 SIZES"><div className="demo-row"><Avatar name="Taylor Moss" size="sm"/><Avatar name="Jordan Lee"/><Avatar name="Morgan Reed" size="lg"/><div className="avatar-stack"><Avatar name="Taylor Moss" size="sm"/><Avatar name="Jordan Lee" size="sm"/><Avatar name="Morgan Reed" size="sm"/><span>+4</span></div></div></Spec>}
@@ -85,8 +86,8 @@ export default function Playground() {
           </div>
           {visibleCatalog.length === 0 && <div className="empty-state">No components match “{query}”. Try another name.</div>}
         </section>
-        <footer className="page-footer"><a className="brand brand--footer" href="#top"><span className="brand__mark">h</span><span>hommio</span></a><span>Made with intention · Design system v1.0</span><a href="#top">Back to top ↑</a></footer>
       </div>
+      <SiteFooter/>
     </main>
   </div>
 }

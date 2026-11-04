@@ -2,36 +2,32 @@
 .philosophy-header { border-bottom: 1px solid #210c0210; }
 .philosophy-menu-toggle { display: none; }
 .philosophy-hero { min-height: 580px; display: grid; justify-items: center; align-content: center; padding: 78px 24px 68px; background: radial-gradient(ellipse at 50% 48%, #fffdf8 0, #f6f1e8 55%, #f0ebe2 100%); text-align: center; }
-.philosophy-kicker,.philosophy-principle__eyebrow,.philosophy-contact > span { color: #8a7d72; font-size: 12px; letter-spacing: .2em; }
+.philosophy-kicker,.philosophy-principle__eyebrow,.philosophy-contact > span { color: #8a7d72; font-size: max(var(--text-min), 12px); letter-spacing: .2em; }
 .philosophy-hero h1 { margin: 24px 0 21px; color: #382419; font-size: clamp(68px, 9vw, 120px); line-height: .91; font-weight: 400; letter-spacing: -.075em; }
 .philosophy-hero h1 em { color: #281308; font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
-.philosophy-hero > p { max-width: 560px; margin: 0; color: #81746a; font-size: 18px; line-height: 1.7; }
-.philosophy-scroll { display: inline-flex; align-items: center; gap: 9px; margin-top: 31px; color: #5a6a92; font-size: 14px; }
+.philosophy-hero > p { max-width: 560px; margin: 0; color: #81746a; font-size: max(var(--text-min), 18px); line-height: 1.7; }
+.philosophy-scroll { display: inline-flex; align-items: center; gap: 9px; margin-top: 31px; color: #5a6a92; font-size: max(var(--text-min), 14px); }
 .philosophy-principles { padding: 40px max(24px, calc((100% - 1080px)/2)) 110px; background: #fffdf9; }
 .philosophy-principle { display: grid; grid-template-columns: 74px minmax(0, 720px); gap: 35px; padding: 70px 0 76px; border-bottom: 1px solid #e7dfd4; }
 .philosophy-principle:last-child { border-bottom: 0; }
-.philosophy-principle__marker { display: flex; flex-direction: column; align-items: center; gap: 17px; color: #5a6a92; font-size: 14px; }
+.philosophy-principle__marker { display: flex; flex-direction: column; align-items: center; gap: 17px; color: #5a6a92; font-size: max(var(--text-min), 14px); }
 .philosophy-principle__marker i { width: 1px; flex: 1; min-height: 150px; background: #d9dfe9; }
 .philosophy-principle__content { max-width: 720px; }
-.philosophy-principle__eyebrow { color: #958a7e; font-size: 11px; }
+.philosophy-principle__eyebrow { color: #958a7e; font-size: max(var(--text-min), 11px); }
 .philosophy-principle h2 { margin: 16px 0 15px; color: #321c10; font-size: clamp(37px, 5vw, 62px); line-height: 1.03; font-weight: 400; letter-spacing: -.06em; }
-.philosophy-principle h3 { margin: 0 0 20px; color: #67584d; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.35; font-weight: 400; font-style: italic; }
-.philosophy-principle p { margin: 0 0 15px; color: #75695f; font-size: 17px; line-height: 1.8; }
-.philosophy-principle blockquote { margin: 30px 0 0; padding: 20px 0 20px 22px; border-left: 2px solid #909267; color: #382419; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(20px, 2.6vw, 28px); line-height: 1.45; font-style: italic; }
-.philosophy-principle .philosophy-refrain { margin-top: 25px; color: #382419; font-size: 20px; font-weight: 600; }
+.philosophy-principle h3 { margin: 0 0 20px; color: #67584d; font-family: Georgia, 'Times New Roman', serif; font-size: max(var(--text-min), clamp(20px, 2.4vw, 26px)); line-height: 1.35; font-weight: 400; font-style: italic; }
+.philosophy-principle p { margin: 0 0 15px; color: #75695f; font-size: max(var(--text-min), 17px); line-height: 1.8; }
+.philosophy-principle blockquote { margin: 30px 0 0; padding: 20px 0 20px 22px; border-left: 2px solid #909267; color: #382419; font-family: Georgia, 'Times New Roman', serif; font-size: max(var(--text-min), clamp(20px, 2.6vw, 28px)); line-height: 1.45; font-style: italic; }
+.philosophy-principle .philosophy-refrain { margin-top: 25px; color: #382419; font-size: max(var(--text-min), 20px); font-weight: 600; }
 .philosophy-contact { display: grid; justify-items: center; padding: 90px 24px 100px; background: #e9ecdf; text-align: center; }
 .philosophy-contact h2 { margin: 18px 0 27px; color: #352319; font-size: clamp(43px, 7vw, 76px); line-height: .98; font-weight: 400; letter-spacing: -.065em; }
-.philosophy-contact a { min-height: 48px; display: inline-flex; align-items: center; gap: 10px; padding: 0 22px; border-radius: 99px; color: #fff; background: #5a6a92; font-size: 14px; }
-.philosophy-footer { padding-top: 42px; }
-.philosophy-footer .g-footer__main { grid-template-columns: 1.5fr 1fr 1fr; }
+.philosophy-contact a { min-height: 48px; display: inline-flex; align-items: center; padding: 0 22px; border-radius: 99px; color: #fff; background: #5a6a92; font-size: max(var(--text-min), 14px); }
 @media (min-width: 761px) {
-  .philosophy-page .g-nav > a,.philosophy-page .g-nav__item > a { font-size: 14px !important; }
-  .philosophy-page .philosophy-principle p { font-size: 17px !important; }
-  .philosophy-page .philosophy-principle blockquote { font-size: clamp(20px, 2.6vw, 28px) !important; }
-  .philosophy-page .philosophy-scroll,.philosophy-page .philosophy-contact a { font-size: 14px !important; }
-  .philosophy-page .philosophy-principle__eyebrow,.philosophy-page .philosophy-kicker,.philosophy-page .philosophy-contact > span { font-size: 12px !important; }
-  .philosophy-page .philosophy-footer .g-footer__brand p { font-size: 13px !important; }
-  .philosophy-page .philosophy-footer .g-footer__group a { font-size: 14px !important; }
+  .philosophy-page .g-nav > a,.philosophy-page .g-nav__item > a { font-size: max(var(--text-min), 14px) !important; }
+  .philosophy-page .philosophy-principle p { font-size: max(var(--text-min), 17px) !important; }
+  .philosophy-page .philosophy-principle blockquote { font-size: max(var(--text-min), clamp(20px, 2.6vw, 28px)) !important; }
+  .philosophy-page .philosophy-scroll,.philosophy-page .philosophy-contact a { font-size: max(var(--text-min), 14px) !important; }
+  .philosophy-page .philosophy-principle__eyebrow,.philosophy-page .philosophy-kicker,.philosophy-page .philosophy-contact > span { font-size: max(var(--text-min), 12px) !important; }
 }
 @media (max-width: 760px) {
   .philosophy-header .g-header__inner { width: calc(100% - 28px); }
@@ -52,6 +48,4 @@
   .philosophy-principle p { font-size: 16px; line-height: 1.75; }
   .philosophy-principle blockquote { font-size: 21px; }
   .philosophy-contact { padding: 72px 20px 80px; }
-  .philosophy-footer .g-footer__main { grid-template-columns: 1fr 1fr; }
-  .philosophy-footer .g-footer__brand { grid-column: span 2; }
 }

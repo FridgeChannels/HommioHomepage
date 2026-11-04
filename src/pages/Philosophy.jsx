@@ -1,5 +1,6 @@
+import SiteFooter from '../components/SiteFooter.jsx'
 import { useState } from 'react'
-import { ArrowDown, ArrowRight, ChevronDown, Menu, X } from 'lucide-react'
+import { ArrowDown, ChevronDown, Menu, X } from 'lucide-react'
 import './givingli-home.css'
 import './philosophy.css'
 
@@ -66,7 +67,7 @@ export default function Philosophy() {
         {principles.map(item => <article className="philosophy-principle" key={item.number}>
           <div className="philosophy-principle__marker"><span>{item.number}</span><i/></div>
           <div className="philosophy-principle__content">
-            <span className="philosophy-principle__eyebrow">PRINCIPLE {item.number}</span>
+            <span className="philosophy-principle__eyebrow">PRINCIPLE</span>
             <h2>{item.title}</h2>
             <h3>{item.subtitle}</h3>
             {item.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
@@ -78,15 +79,9 @@ export default function Philosophy() {
       <section className="philosophy-contact" id="contact">
         <span>MADE FOR EVERYDAY LIFE</span>
         <h2>Make your brand<br/>part of the home.</h2>
-        <a href="/#talk-to-us">Talk to Hommio <ArrowRight size={16}/></a>
+        <a href="/#talk-to-us">Talk to Hommio</a>
       </section>
     </main>
-    <footer className="g-footer philosophy-footer">
-      <div className="g-footer__main"><div className="g-footer__brand"><a className="g-logo g-logo--footer" href="/" aria-label="Hommio home"><span className="g-logo__crop"><img src="/assets/hommio-logo.png" alt="Hommio" /></span></a><p>Hommio is an in-home retention solution provider for CPG brands.</p></div>
-        <div className="g-footer__group"><b>Explore</b><a href="/">Home</a><a href="/philosophy">Retention Philosophy</a></div>
-        <div className="g-footer__group"><b>Contact</b><a href="/#talk-to-us">Talk to Hommio</a></div>
-      </div>
-      <div className="g-footer__bottom"><span>© 2026 Hommio. All rights reserved.</span></div>
-    </footer>
+    <SiteFooter/>
   </div>
 }

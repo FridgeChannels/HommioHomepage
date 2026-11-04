@@ -1,3 +1,4 @@
+import SiteFooter from '../components/SiteFooter.jsx'
 import { useState } from 'react'
 import { ArrowDown, ArrowRight, ArrowUpRight, ChevronDown, Menu, Play, X } from 'lucide-react'
 import { Button, Card, SectionHeading } from '../../components/ui'
@@ -27,7 +28,7 @@ function MagnetScene({ showCaption = false }) {
   return <div className="magnet-scene" aria-label="A Reorder Magnet at home beside a phone">
     <div className="scene-sun"/><div className="scene-counter"/><div className="scene-tile scene-tile--one"/><div className="scene-tile scene-tile--two"/>
     <div className="magnet-object"><div className="magnet-object__shine"/><div className="magnet-object__leaf leaf-one"/><div className="magnet-object__leaf leaf-two"/><div className="magnet-object__leaf leaf-three"/><div className="magnet-object__brand">Hommio</div><div className="magnet-object__line"/></div>
-    <div className="phone-object"><div className="phone-object__speaker"/><div className="phone-object__screen"><span className="phone-object__dot">h</span><i/><i/><b/><small/></div></div>
+    <div className="phone-object"><div className="phone-object__speaker"/><div className="phone-object__screen"><span className="phone-object__dot"><img src="/assets/hommio-h-mark.png" alt=""/></span><i/><i/><b/><small/></div></div>
     {showCaption && <div className="scene-caption"><span className="scene-caption__play"><Play size={13} fill="currentColor"/></span><span>Product features video</span></div>}
   </div>
 }
@@ -44,16 +45,16 @@ function Home() {
           <div className="nav-solutions"><a href="#solutions" onClick={closeMenu}>Solutions <ChevronDown size={13}/></a><div className="solutions-menu"><a href="#dtc">For DTC Brands <ArrowUpRight size={14}/></a><a href="#amazon">For Amazon Brands <ArrowUpRight size={14}/></a></div></div>
           <a href="#pricing" onClick={closeMenu}>Pricing &amp; ROI Calculator</a>
           <a href="#philosophy" onClick={closeMenu}>Retention Philosophy</a>
-          <a className="mobile-nav-cta" href="#talk-to-hommio" onClick={closeMenu}>Talk to Hommio <ArrowRight size={15}/></a>
+          <a className="mobile-nav-cta" href="#talk-to-hommio" onClick={closeMenu}>Talk to Hommio</a>
         </nav>
-        <Button className="header-cta" size="sm" onClick={() => document.querySelector('#talk-to-hommio')?.scrollIntoView({ behavior: 'smooth' })}>Talk to Hommio <ArrowRight size={14}/></Button>
+        <Button className="header-cta" size="sm" onClick={() => document.querySelector('#talk-to-hommio')?.scrollIntoView({ behavior: 'smooth' })}>Talk to Hommio</Button>
       </div>
     </header>
 
     <main>
       <section className="home-hero" id="home">
         <div className="hero-inner">
-          <div className="hero-copy"><h1>Retention<br/><em>is at home.</em></h1><h2>In-home retention solution for CPG brands.</h2><p>Hommio helps customers remember your brand and buy from you again. We plan how to reach the right households, create a Reorder Magnet they can keep at home, and personalize what happens when they tap.</p><div className="hero-actions"><Button size="lg" onClick={() => document.querySelector('#talk-to-hommio')?.scrollIntoView({ behavior: 'smooth' })}>Talk to Hommio <ArrowRight size={17}/></Button><a className="button-secondary" href="#talk-to-hommio">Request a Reorder Magnet <ArrowUpRight size={15}/></a></div></div>
+          <div className="hero-copy"><h1>Retention<br/><em>is at home.</em></h1><h2>In-home retention solution for CPG brands.</h2><p>Hommio helps customers remember your brand and buy from you again. We plan how to reach the right households, create a Reorder Magnet they can keep at home, and personalize what happens when they tap.</p><div className="hero-actions"><Button size="lg" onClick={() => document.querySelector('#talk-to-hommio')?.scrollIntoView({ behavior: 'smooth' })}>Talk to Hommio</Button><a className="button-secondary" href="#talk-to-hommio">Request a Reorder Magnet</a></div></div>
           <div className="hero-art"><div className="hero-art__halo"/><div className="hero-art__orbit hero-art__orbit--a"/><div className="hero-art__orbit hero-art__orbit--b"/><MagnetScene/></div>
         </div>
         <a className="scroll-cue" href="#product-video"><ArrowDown size={14}/></a>
@@ -63,21 +64,21 @@ function Home() {
 
       <section className="fit-section section-shell" id="solutions"><div className="section-heading-row"><SectionHeading eyebrow="FIND YOUR FIT" title="Built around how your customers buy." description="Help customers return to your DTC store or Amazon Brand Store with a Reorder Magnet designed around your brand and sales channels."/></div>
         <div className="fit-grid">
-          <Card className="fit-card fit-card--dtc" id="dtc" tone="paper"><div className="fit-card__visual fit-card__visual--dtc"><div className="fit-card__sun"/><div className="fit-card__magnet"><span>h</span><i/><i/></div><span className="fit-card__orbit"/></div><div className="fit-card__body"><span className="fit-card__eyebrow">FOR DTC BRANDS <span>01</span></span><h3>A way back to your DTC store.</h3><p>Include a Reorder Magnet with your customers’ orders. Give them a simple way to return to your products, content, or reorder page when they need it.</p><a href="#talk-to-hommio">Explore Hommio for DTC Brands <ArrowRight size={15}/></a></div></Card>
-          <Card className="fit-card fit-card--amazon" id="amazon" tone="paper"><div className="fit-card__visual fit-card__visual--amazon"><div className="amazon-box"><span>a</span><i/><i/><i/></div><div className="fit-card__magnet fit-card__magnet--blue"><span>h</span><i/><i/></div><span className="fit-card__orbit"/></div><div className="fit-card__body"><span className="fit-card__eyebrow">FOR AMAZON BRANDS <span>02</span></span><h3>A way back to your Amazon Brand Store.</h3><p>Give customers a direct route from their home to your Amazon Brand Store—without starting with another search.</p><a href="#talk-to-hommio">Explore Hommio for Amazon Brands <ArrowRight size={15}/></a></div></Card>
+          <Card className="fit-card fit-card--dtc" id="dtc" tone="paper"><div className="fit-card__visual fit-card__visual--dtc"><div className="fit-card__sun"/><div className="fit-card__magnet"><img src="/assets/hommio-h-mark.png" alt="" /><i/><i/></div><span className="fit-card__orbit"/></div><div className="fit-card__body"><span className="fit-card__eyebrow">FOR DTC BRANDS <span>01</span></span><h3>A way back to your DTC store.</h3><p>Include a Reorder Magnet with your customers’ orders. Give them a simple way to return to your products, content, or reorder page when they need it.</p><a href="#talk-to-hommio">Explore Hommio for DTC Brands <ArrowRight size={15}/></a></div></Card>
+          <Card className="fit-card fit-card--amazon" id="amazon" tone="paper"><div className="fit-card__visual fit-card__visual--amazon"><div className="amazon-box"><span>a</span><i/><i/><i/></div><div className="fit-card__magnet fit-card__magnet--blue"><img src="/assets/hommio-h-mark.png" alt="" /><i/><i/></div><span className="fit-card__orbit"/></div><div className="fit-card__body"><span className="fit-card__eyebrow">FOR AMAZON BRANDS <span>02</span></span><h3>A way back to your Amazon Brand Store.</h3><p>Give customers a direct route from their home to your Amazon Brand Store—without starting with another search.</p><a href="#talk-to-hommio">Explore Hommio for Amazon Brands <ArrowRight size={15}/></a></div></Card>
         </div>
       </section>
 
       <section className="scenario-section section-shell" id="use-cases"><div className="scenario-top"><SectionHeading title="What scenario to use Hommio?"/><a className="scenario-pricing" id="pricing" href="#pricing">Explore Pricing &amp; ROI Calculator <ArrowUpRight size={15}/></a></div><div className="scenario-grid">{scenarios.map(item => <article className="scenario-item" key={item.number}><div className="scenario-item__top"><span>{item.number}</span><b>{item.icon}</b></div><h3>{item.title}</h3><p>{item.description}</p></article>)}</div></section>
 
-      <section className="philosophy-section section-shell" id="philosophy"><div className="philosophy-intro"><h2>Why retention<br/>is <em>at home.</em></h2><a href="#talk-to-hommio">Explore Our Retention Philosophy <ArrowRight size={15}/></a></div><div className="philosophy-list"><article><span>01</span><div><h3>Brands Must Be Ambient.</h3></div><i>↗</i></article><article><span>02</span><div><h3>Every Sale Strengthens the Channel.</h3></div><i>↗</i></article><article><span>03</span><div><h3>Intelligence Begins Where the Product Is Consumed.</h3></div><i>↗</i></article></div><div className="philosophy-orb"><div className="philosophy-orb__inner"><span>H</span><small>Hommio</small></div></div></section>
+      <section className="philosophy-section section-shell" id="philosophy"><div className="philosophy-intro"><h2>Why retention<br/>is <em>at home.</em></h2><a href="#talk-to-hommio">Explore Our Retention Philosophy <ArrowRight size={15}/></a></div><div className="philosophy-list"><article><span>01</span><div><h3>Brands Must Be Ambient.</h3></div><i>↗</i></article><article><span>02</span><div><h3>Every Sale Strengthens the Channel.</h3></div><i>↗</i></article><article><span>03</span><div><h3>Intelligence Begins Where the Product Is Consumed.</h3></div><i>↗</i></article></div><div className="philosophy-orb"><div className="philosophy-orb__inner"><img src="/assets/hommio-h-mark.png" alt=""/><small>Hommio</small></div></div></section>
 
       <section className="faq-section section-shell" id="faq"><div className="faq-intro"><h2>FAQ</h2><a href="#talk-to-hommio">Talk to Hommio <ArrowRight size={15}/></a></div><div className="faq-list">{faqs.map(faq => <details className="faq-item" key={faq.question}><summary><span>{faq.question}</span><i/></summary><p>{faq.answer}</p></details>)}</div></section>
 
-      <section className="contact-section" id="talk-to-hommio"><div className="contact-shape contact-shape--one"/><div className="contact-shape contact-shape--two"/><div className="contact-inner"><h2>Bring Hommio to your<br/>customers’ homes.</h2><p>Let’s build a deployment plan, Reorder Magnet, and personalized experience around your brand.</p><div className="contact-actions"><a className="contact-button" href="#footer">Talk to Hommio <ArrowRight size={17}/></a><a className="contact-link" href="#footer">Request a Reorder Magnet <ArrowUpRight size={15}/></a></div></div></section>
+      <section className="contact-section" id="talk-to-hommio"><div className="contact-shape contact-shape--one"/><div className="contact-shape contact-shape--two"/><div className="contact-inner"><h2>Bring Hommio to your<br/>customers’ homes.</h2><p>Let’s build a deployment plan, Reorder Magnet, and personalized experience around your brand.</p><div className="contact-actions"><a className="contact-button" href="#footer">Talk to Hommio</a><a className="contact-link" href="#footer">Request a Reorder Magnet</a></div></div></section>
     </main>
 
-    <footer className="home-footer" id="footer"><div className="footer-main"><div className="footer-brand-block"><Brand footer/><h2>Retention is at home.</h2><p>Hommio provides an in-home retention solution for CPG brands.</p></div><div className="footer-nav"><div><a href="#home">Home</a><a href="#dtc">For DTC Brands</a><a href="#amazon">For Amazon Brands</a><a href="#pricing">Pricing &amp; ROI Calculator</a><a href="#philosophy">Retention Philosophy</a><a href="#faq">FAQ</a></div><div><a href="#talk-to-hommio">Talk to Hommio</a><a href="#talk-to-hommio">Request a Reorder Magnet</a><a href="#footer">Contact</a></div><div><a href="#footer">Privacy Policy</a><a href="#footer">Terms of Use</a></div></div></div><div className="footer-bottom"><a href="#home">Hommio</a><a href="#talk-to-hommio">Talk to Hommio</a><a href="#talk-to-hommio">Request a Reorder Magnet Sample</a></div></footer>
+    <SiteFooter/>
   </div>
 }
 

@@ -1,0 +1,2 @@
+import './style.css'
+export function StepList({ steps, current = 0 }) { return <ol className="ui-step-list">{steps.map((step, index) => <li key={step.title} className={index < current ? 'is-done' : index === current ? 'is-current' : ''}><span className="ui-step-list__number">{index < current ? '✓' : String(index + 1).padStart(2, '0')}</span><div><strong>{step.title}</strong>{step.description && <p>{step.description}</p>}</div></li>)}</ol> }

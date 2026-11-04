@@ -1,0 +1,6 @@
+.ui-card { border: 1px solid var(--color-line); border-radius: var(--radius-lg); padding: var(--space-6); transition: transform .25s var(--ease-standard), box-shadow .25s; }
+.ui-card--paper { background: var(--color-paper); }
+.ui-card--soft { background: var(--color-paper-soft); }
+.ui-card--blue { color: var(--color-ink); background: var(--color-blue-light); border-color: transparent; }
+.ui-card--dark { color: var(--color-paper); background: var(--color-ink); border-color: transparent; }
+.ui-card--hover:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }

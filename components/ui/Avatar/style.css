@@ -1,0 +1,5 @@
+.ui-avatar { flex: none; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--color-ink); font-weight: 700; object-fit: cover; border: 2px solid var(--color-paper); }
+.ui-avatar--sm { width: 32px; height: 32px; font-size: 10px; }
+.ui-avatar--md { width: 42px; height: 42px; font-size: 12px; }
+.ui-avatar--lg { width: 56px; height: 56px; font-size: 15px; }
+.ui-avatar--lilac { background: #e9ddf0; }.ui-avatar--peach { background: #f5d7c7; }.ui-avatar--sage { background: #dce2d1; }.ui-avatar--blue { background: var(--color-blue-light); }

@@ -1,0 +1,1 @@
+.ui-textarea { display: block; width: 100%; min-height: 112px; resize: vertical; border: 1px solid var(--color-line); border-radius: var(--radius-sm); padding: 14px 15px; color: var(--color-ink); background: var(--color-paper); }.ui-textarea::placeholder { color: #a69b91; }.ui-textarea:focus { outline: none; border-color: var(--color-blue); box-shadow: var(--focus-ring); }

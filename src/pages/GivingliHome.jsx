@@ -1,6 +1,8 @@
 import SiteFooter from '../components/SiteFooter.jsx'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowRight, X } from 'lucide-react'
+import { sampleFieldNames, submitLeadAndBook } from '../lib/submitLead.js'
+import { videos } from '../lib/videos.js'
 import './givingli-home.css'
 
 const root = 'https://givingli.com'
@@ -56,7 +58,7 @@ function HeroGiftStack({ media, position, index }) {
 
 function Hero({ onTalk, onSampleRequest }) {
   const heroMedia = [
-    { src: '/assets/home-hero/dog-choice.mp4', type: 'video', alt: 'Dog choosing a Hommio reorder magnet' },
+    { src: videos.dogChoice, type: 'video', alt: 'Dog choosing a Hommio reorder magnet' },
     { src: '/assets/home-hero/hero-frame-2.png', type: 'image', alt: 'Customer considering a product on a refrigerator magnet' },
     { src: '/assets/home-hero/fridge-scene.png', type: 'image', alt: 'Customer reaching into a refrigerator with a Hommio magnet nearby' },
     { src: '/assets/home-hero/dtc-who-we-serve.png', type: 'image', alt: 'Example DTC coffee brand magnet' },
@@ -81,7 +83,7 @@ function FAQ() {
 }
 
 function CustomCard() {
-  return <section className="g-custom-card g-custom-card--video"><video className="g-custom-card__video" controls playsInline preload="metadata" aria-label="Hommio Reorder Magnet video"><source src="/assets/hommio-homepage-video.mp4" type="video/mp4"/>Your browser does not support the video element.</video></section>
+  return <section className="g-custom-card g-custom-card--video"><video className="g-custom-card__video" controls playsInline preload="metadata" aria-label="Hommio Reorder Magnet video"><source src={videos.homepage} type="video/mp4"/>Your browser does not support the video element.</video></section>
 }
 
 function ScenarioSection() {
@@ -104,7 +106,8 @@ function ReorderMagnetForm({ open, onClose }) {
   const [fullName, setFullName] = useState('')
   const [recipientName, setRecipientName] = useState('')
   const [recipientNameEdited, setRecipientNameEdited] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState('')
+  const [submitting, setSubmitting] = useState(false)
   const [channelError, setChannelError] = useState(false)
 
   useEffect(() => {
@@ -127,16 +130,23 @@ function ReorderMagnetForm({ open, onClose }) {
   const showDtc = channel === 'dtc' || channel === 'both'
   const showAmazon = channel === 'amazon' || channel === 'both'
   const showOther = channel === 'other'
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault()
     if (!channel) { setChannelError(true); document.getElementById('request-channel')?.focus(); return }
     setChannelError(false)
-    setSubmitted(true)
+    setStatus('')
+    setSubmitting(true)
+    try {
+      await submitLeadAndBook({ form: event.currentTarget, source: 'Request a Sample' })
+    } catch (error) {
+      setStatus(error.message)
+      setSubmitting(false)
+    }
   }
   const field = (id, label, options = {}) => (
     <div className={`g-contact-form__field g-request-form__field${options.full ? ' g-request-form__field--full' : ''}`}>
       <label htmlFor={id}>{label}{options.required && <> <b>*</b></>}</label>
-      <input id={id} type={options.type || 'text'} placeholder={options.placeholder || ''} autoComplete={options.autoComplete} required={options.required} value={options.value} onChange={options.onChange}/>
+      <input id={id} name={sampleFieldNames[id]} type={options.type || 'text'} placeholder={options.placeholder || ''} autoComplete={options.autoComplete} required={options.required} value={options.value} onChange={options.onChange}/>
       {options.hint && <small>{options.hint}</small>}
     </div>
   )
@@ -150,12 +160,12 @@ function ReorderMagnetForm({ open, onClose }) {
         <section className="g-request-form__section" aria-labelledby="request-about-title">
           <h3 id="request-about-title">About you</h3>
           <div className="g-request-form__grid">
-            {field('request-full-name', 'Full name', { required: true, autoComplete: 'name', value: fullName, onChange: event => { setFullName(event.target.value); setSubmitted(false) } })}
-            {field('request-work-email', 'Work email', { required: true, type: 'email', autoComplete: 'email', placeholder: 'you@brand.com', onChange: () => setSubmitted(false) })}
-            {field('request-brand-name', 'Brand / company name', { required: true, autoComplete: 'organization', value: undefined, onChange: () => setSubmitted(false) })}
+            {field('request-full-name', 'Full name', { required: true, autoComplete: 'name', value: fullName, onChange: event => { setFullName(event.target.value); setStatus('') } })}
+            {field('request-work-email', 'Work email', { required: true, type: 'email', autoComplete: 'email', placeholder: 'you@brand.com', onChange: () => setStatus('') })}
+            {field('request-brand-name', 'Brand / company name', { required: true, autoComplete: 'organization', value: undefined, onChange: () => setStatus('') })}
             <div className="g-contact-form__field g-request-form__field g-request-form__field--full">
               <label id="request-channel-label" htmlFor="request-channel">Which channel would you like to explore? <b>*</b></label>
-              <FormSelect id="request-channel" name="channel" value={channel} onChange={value => { setChannel(value); setSubmitted(false); setChannelError(false) }} placeholder="Select a channel" options={[{ value: 'dtc', label: 'DTC / Our own online store' }, { value: 'amazon', label: 'Amazon' }, { value: 'both', label: 'Both DTC and Amazon' }, { value: 'other', label: 'Other / Not sure yet' }]}/>
+              <FormSelect id="request-channel" name="channel" value={channel} onChange={value => { setChannel(value); setStatus(''); setChannelError(false) }} placeholder="Select a channel" options={[{ value: 'dtc', label: 'DTC / Our own online store' }, { value: 'amazon', label: 'Amazon' }, { value: 'both', label: 'Both DTC and Amazon' }, { value: 'other', label: 'Other / Not sure yet' }]}/>
               {channelError && <small className="g-request-form__select-error" role="alert">Please select a channel.</small>}
             </div>
           </div>
@@ -164,44 +174,43 @@ function ReorderMagnetForm({ open, onClose }) {
         <section className="g-request-form__section" aria-labelledby="request-brand-title">
           <h3 id="request-brand-title">Your brand</h3>
           <div className="g-request-form__grid">
-            {showDtc && field('request-dtc-url', 'DTC store URL', { required: true, type: 'url', autoComplete: 'url', placeholder: 'https://', full: true, onChange: () => setSubmitted(false) })}
-            {showAmazon && field('request-amazon-url', 'Amazon product or Brand Store URL', { required: true, placeholder: 'URL or ASIN with marketplace', full: true, hint: 'Use an ASIN with its marketplace.', onChange: () => setSubmitted(false) })}
-            {showOther && field('request-brand-url', 'Brand website or store URL', { type: 'url', autoComplete: 'url', placeholder: 'https://', full: true, onChange: () => setSubmitted(false) })}
+            {showDtc && field('request-dtc-url', 'DTC store URL', { required: true, type: 'url', autoComplete: 'url', placeholder: 'https://', full: true, onChange: () => setStatus('') })}
+            {showAmazon && field('request-amazon-url', 'Amazon product or Brand Store URL', { required: true, placeholder: 'URL or ASIN with marketplace', full: true, hint: 'Use an ASIN with its marketplace.', onChange: () => setStatus('') })}
+            {showOther && field('request-brand-url', 'Brand website or store URL', { type: 'url', autoComplete: 'url', placeholder: 'https://', full: true, onChange: () => setStatus('') })}
           </div>
         </section>
 
         <section className="g-request-form__section" aria-labelledby="request-shipping-title">
           <h3 id="request-shipping-title">Shipping details</h3>
           <div className="g-request-form__grid">
-            {field('request-recipient-name', 'Recipient name', { required: true, autoComplete: 'shipping name', value: recipientNameEdited ? recipientName : fullName, onChange: event => { setRecipientName(event.target.value); setRecipientNameEdited(true); setSubmitted(false) },  })}
-            {field('request-country', 'Country / region', { required: true, autoComplete: 'shipping country-name', onChange: () => setSubmitted(false) })}
-            {field('request-street-address', 'Street address', { required: true, autoComplete: 'shipping address-line1', full: true, onChange: () => setSubmitted(false) })}
+            {field('request-recipient-name', 'Recipient name', { required: true, autoComplete: 'shipping name', value: recipientNameEdited ? recipientName : fullName, onChange: event => { setRecipientName(event.target.value); setRecipientNameEdited(true); setStatus('') },  })}
+            {field('request-country', 'Country / region', { required: true, autoComplete: 'shipping country-name', onChange: () => setStatus('') })}
+            {field('request-street-address', 'Street address', { required: true, autoComplete: 'shipping address-line1', full: true, onChange: () => setStatus('') })}
             {field('request-apartment', 'Apartment, suite, or unit', { autoComplete: 'shipping address-line2', full: true })}
-            {field('request-city', 'City', { required: true, autoComplete: 'shipping address-level2', onChange: () => setSubmitted(false) })}
+            {field('request-city', 'City', { required: true, autoComplete: 'shipping address-level2', onChange: () => setStatus('') })}
             {field('request-state', 'State / province / region', { autoComplete: 'shipping address-level1',  })}
             {field('request-postal-code', 'ZIP / postal code', { autoComplete: 'shipping postal-code',  })}
             <details className="g-request-form__delivery-phone g-request-form__field--full">
               <summary>Delivery phone number </summary>
               <div className="g-request-form__delivery-phone-body">
                 <label htmlFor="request-delivery-phone">Delivery phone number</label>
-                <input id="request-delivery-phone" type="tel" autoComplete="shipping tel"/>
+                <input id="request-delivery-phone" name="deliveryPhone" type="tel" autoComplete="shipping tel"/>
               </div>
             </details>
             <div className="g-contact-form__field g-request-form__field g-request-form__field--full">
               <label htmlFor="request-delivery-instructions">Delivery instructions</label>
-              <textarea id="request-delivery-instructions" rows="3" autoComplete="off"/>
+              <textarea id="request-delivery-instructions" name="deliveryInstructions" rows="3" autoComplete="off"/>
             </div>
           </div>
         </section>
 
-        {submitted && <p className="g-request-form__success" role="status">We’ll review your request and contact you about availability and shipping details.</p>}
-        <button className="g-contact-form__submit" type="submit">Request a Sample</button>
+        {status && <p className="g-request-form__success" role="status">{status}</p>}
+        <button className="g-contact-form__submit" type="submit" disabled={submitting}>{submitting ? 'Saving…' : 'Request a Sample'}</button>
       </form>
     </section>
   </div>
 }
 
-const calendlyUrl = import.meta.env.VITE_CALENDLY_URL || ''
 const improvementOptions = [
   'Higher repeat-purchase',
   'Higher subscription conversion rates',
@@ -233,6 +242,7 @@ function TalkToHommioForm({ open, onClose }) {
   const [channel, setChannel] = useState('')
   const [improvements, setImprovements] = useState([])
   const [status, setStatus] = useState('')
+  const [submitting, setSubmitting] = useState(false)
   useEffect(() => {
     if (!open) return
     const previousOverflow = document.body.style.overflow
@@ -254,21 +264,18 @@ function TalkToHommioForm({ open, onClose }) {
       ? current.filter(item => item !== value)
       : current.length < 2 ? [...current, value] : current)
   }
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault()
     if (!channel) { setStatus('Select a channel to continue.'); return }
     if (!improvements.length) { setStatus('Choose at least one improvement area.'); return }
-    if (!calendlyUrl) {
-      setStatus('Please add the Hommio Calendly booking link in the site settings to enable scheduling.')
-      return
+    setStatus('')
+    setSubmitting(true)
+    try {
+      await submitLeadAndBook({ form: event.currentTarget, source: 'Talk to Hommio' })
+    } catch (error) {
+      setStatus(error.message)
+      setSubmitting(false)
     }
-    const data = new FormData(event.currentTarget)
-    const bookingUrl = new URL(calendlyUrl)
-    const name = String(data.get('fullName') || '')
-    const email = String(data.get('workEmail') || '')
-    if (name) bookingUrl.searchParams.set('name', name)
-    if (email) bookingUrl.searchParams.set('email', email)
-    window.location.assign(bookingUrl.toString())
   }
   return <div className="g-request-modal" role="presentation" onMouseDown={event => { if (event.target === event.currentTarget) onClose() }}>
     <section className="g-request-dialog g-talk-dialog" role="dialog" aria-modal="true" aria-labelledby="talk-form-title">
@@ -297,7 +304,7 @@ function TalkToHommioForm({ open, onClose }) {
         {showOther && <section className="g-request-form__section"><h3>Other channels</h3><div className="g-request-form__grid"><div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label htmlFor="talk-other-url">Brand website or store URL</label><input id="talk-other-url" name="otherUrl" type="url" placeholder="https://"/></div></div></section>}
         <section className="g-request-form__section"><h3>Anything else?</h3><div className="g-request-form__grid"><div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label htmlFor="talk-notes">Is there anything you’d like us to know before we meet?</label><textarea id="talk-notes" name="notes" rows="4"/></div></div></section>
         {status && <p className="g-request-form__success" role="status">{status}</p>}
-        <button className="g-contact-form__submit" type="submit">Next</button>
+        <button className="g-contact-form__submit" type="submit" disabled={submitting}>{submitting ? 'Saving…' : 'Next'}</button>
       </form>
     </section>
   </div>

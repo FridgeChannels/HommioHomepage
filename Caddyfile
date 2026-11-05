@@ -1,0 +1,8 @@
+hommio.com {
+	encode gzip
+	reverse_proxy 127.0.0.1:8080
+}
+
+www.hommio.com {
+	redir https://hommio.com{uri} permanent
+}

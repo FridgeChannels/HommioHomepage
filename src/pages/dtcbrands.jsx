@@ -30,7 +30,7 @@ function Header({ onTalk }) {
   return <header className="g-header"><div className="g-header__inner">
     <div className="g-header__brand"><GLogo/></div>
     <nav className="g-nav" aria-label="Main navigation">
-      <a href="#top">Hommio</a>
+      <a href="/">Hommio</a>
       <a href="/dtcbrands">For DTC Brands</a>
       <a href="#amazon">For Amazon Brands</a>
       <a href="/philosophy">Our Philosophy</a>
@@ -87,6 +87,7 @@ function FitYourGoal() {
 function EconomicsSection() {
   const [economicsLead] = economicsCopy.split('without per-impression fees.')
   const [dashboardHeight, setDashboardHeight] = useState(900)
+  const [dashboardHintTop, setDashboardHintTop] = useState(230)
   const dashboardFrameRef = useRef(null)
 
   useEffect(() => {
@@ -95,6 +96,8 @@ function EconomicsSection() {
       if (event.data?.type !== 'hommio-dashboard-resize') return
       const height = Math.ceil(Number(event.data.height))
       if (Number.isFinite(height)) setDashboardHeight(Math.max(600, Math.min(height, 5000)))
+      const hintTop = Number(event.data.hintTop)
+      if (Number.isFinite(hintTop) && hintTop >= 0) setDashboardHintTop(hintTop)
     }
     window.addEventListener('message', handleDashboardMessage)
     return () => window.removeEventListener('message', handleDashboardMessage)
@@ -108,15 +111,22 @@ function EconomicsSection() {
         <h2 id="economics-title">Make repeat purchasing a household habit.</h2>
         <p>{economicsLead}<strong className="dtc-economics__emphasis">without per-impression fees.</strong></p>
       </div>
-      <iframe
-        ref={dashboardFrameRef}
-        className="dtc-hph-dashboard-embed"
-        src="/assets/hommio_hph_dashboard.html"
-        title="Hommio DTC household economics dashboard"
-        sandbox="allow-scripts"
-        loading="lazy"
-        style={{ height: `${dashboardHeight}px` }}
-      />
+      <div className="dtc-dashboard-layout">
+        <iframe
+          ref={dashboardFrameRef}
+          className="dtc-hph-dashboard-embed"
+          src="/assets/hommio_hph_dashboard.html"
+          title="Hommio DTC household economics dashboard"
+          sandbox="allow-scripts"
+          loading="lazy"
+          onLoad={() => dashboardFrameRef.current?.contentWindow?.postMessage({ type: 'hommio-measure' }, '*')}
+          style={{ height: `${dashboardHeight}px` }}
+        />
+        <div className="dtc-dashboard-hint" aria-hidden="true" style={{ '--hint-top': `${dashboardHintTop}px` }}>
+          <svg className="dtc-dashboard-hint__arrow" viewBox="0 0 72 46" fill="none"><path d="M68 7 C48 4 51 31 9 29 M19 22 L8 29 L18 36" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M64 10 C51 10 50 24 33 28" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity=".55"/></svg>
+          <span className="dtc-dashboard-hint__text">select a period to<br/>see the numbers change</span>
+        </div>
+      </div>
     </div>
   </section>
 }

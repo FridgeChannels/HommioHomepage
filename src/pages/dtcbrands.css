@@ -247,8 +247,58 @@
 .dtc-hph-dashboard-embed {
   display: block;
   width: 100%;
+  min-width: 0;
+  grid-column: 1;
+  grid-row: 1;
   border: 0;
   background: transparent;
+}
+
+.dtc-dashboard-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  align-items: start;
+  column-gap: 4px;
+}
+
+.dtc-dashboard-hint {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--hint-top, 230px);
+  color: #38528a;
+  transform: translateY(-50%);
+  animation: dtc-hint-glow 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.dtc-dashboard-hint__arrow { flex: none; width: 62px; height: 44px; overflow: visible; }
+.givingli-site .dtc-dashboard-hint__text {
+  color: inherit;
+  font-family: 'Bradley Hand', 'Segoe Print', cursive;
+  font-size: 24px !important;
+  font-weight: 700;
+  line-height: 1.15;
+  transform: rotate(-2deg);
+}
+
+@keyframes dtc-hint-glow {
+  0%, 100% { opacity: .8; filter: drop-shadow(0 0 2px rgb(105 145 221 / .3)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 9px rgb(105 145 221 / .8)); }
+}
+
+@media (max-width: 900px) {
+  .dtc-dashboard-layout { grid-template-columns: minmax(0, 1fr); row-gap: 6px; }
+  .dtc-hph-dashboard-embed { grid-row: 2; }
+  .dtc-dashboard-hint { grid-column: 1; grid-row: 1; justify-self: end; margin-top: 0; transform: none; }
+  .dtc-dashboard-hint__arrow { width: 54px; transform: rotate(-30deg); }
+  .givingli-site .dtc-dashboard-hint__text { font-size: 21px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dtc-dashboard-hint { animation: none; }
 }
 
 .dtc-hph-dashboard__header {
@@ -583,6 +633,8 @@
   letter-spacing: .03em;
   text-transform: lowercase;
 }
+
+.dtcbrands-page .g-faq__intro > span { color: var(--gl-blue); }
 
 .dtcbrands-page :is(a, button, summary):focus-visible {
   outline: 3px solid #92b6f1;

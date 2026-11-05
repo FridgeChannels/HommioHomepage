@@ -8,7 +8,7 @@ const img = (path) => `${root}${path}`
 
 
 const channelFit = [
-  { id: 'dtc', title: 'A way back to your DTC store', copy: 'Include a Reorder Magnet with your customers’ orders. Give them a simple way to return to your products, content, or reorder page when they need it.', cta: 'Explore Hommio for DTC Brands', href: 'https://app.notion.com/p/DTC-40e9166fd9fd80338d73d17c239779df?pvs=21', icon: '/assets/dtc-online-store-shopify-green.svg' },
+  { id: 'dtc', title: 'A way back to your DTC store', copy: 'Include a Reorder Magnet with your customers’ orders. Give them a simple way to return to your products, content, or reorder page when they need it.', cta: 'Explore Hommio for DTC Brands', href: '/dtcbrands', icon: '/assets/dtc-online-store-shopify-green.svg' },
   { id: 'amazon', title: 'A way back to your Amazon Brand Store', copy: 'Give customers a direct route from their home to your Amazon Brand Store—without starting with another search.', cta: 'Explore Hommio for Amazon Brands', href: 'https://app.notion.com/p/Amazon-40e9166fd9fd803f8f2bfa3c794f5c41?pvs=21', icon: '/assets/amazon-browser-package-icon.png' },
 ]
 
@@ -63,13 +63,13 @@ function Hero({ onTalk, onSampleRequest }) {
   ]
   const positions = ['left', 'right', 'lower-left', 'lower-right']
   return <section className="g-hero" id="top">
-    <div className="g-hero__title"><h1>Retention <span className="g-hero-cover"><span className="g-hero-cover__text">is <em>at home</em></span><span className="g-hero-cover__sparkles" aria-hidden="true"/><span className="g-hero-cover__corners" aria-hidden="true"/></span></h1><h2>In-home retention solution for CPG brands</h2><p>Hommio helps customers remember your brand and buy from you again. We plan how to reach the right households, create a Reorder Magnet they can keep at home, and personalize what happens when they tap.</p><div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><a href="#request-sample" onClick={event => { event.preventDefault(); onSampleRequest() }}>Request a Sample</a></div></div>
+    <div className="g-hero__title"><h1>Retention <span>is</span>{' '}<span className="g-hero-cover"><span className="g-hero-cover__text"><em>at home</em></span><span className="g-hero-cover__sparkles" aria-hidden="true"/><span className="g-hero-cover__corners" aria-hidden="true"/></span></h1><h2>In-home retention solution for CPG brands</h2><p>Hommio helps customers remember your brand and buy from you again. We plan how to reach the right households, create a Reorder Magnet they can keep at home, and personalize what happens when they tap.</p><div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><a href="#request-sample" onClick={event => { event.preventDefault(); onSampleRequest() }}>Request a Sample</a></div></div>
     <div className="g-hero__objects" aria-hidden="true"><div className="g-hero__glow"/>{positions.map((position, index) => <HeroGiftStack key={position} position={position} index={index} media={heroMedia}/>)}</div>
   </section>
 }
 
 function Solutions() {
-  return <section className="g-solutions" id="solutions"><div className="g-solutions__inner"><span>find your fit</span><h2>Built around how your customers buy</h2><p>Help customers return to your DTC store or Amazon Brand Store with a Reorder Magnet designed around your brand and sales channels.</p><div className="g-solution-grid g-solution-grid--channels">{channelFit.map(item => <article className="g-solution-card" id={item.id} key={item.id}><div className="g-solution-card__icon"><img className={`g-solution-card__logo g-solution-card__logo--${item.id}`} src={item.icon} alt="" aria-hidden="true"/></div><h3>{item.title}</h3><p>{item.copy}</p><a href={item.href} target="_blank" rel="noreferrer">{item.cta} <ArrowRight size={18}/></a></article>)}</div></div></section>
+  return <section className="g-solutions" id="solutions"><div className="g-solutions__inner"><span>find your fit</span><h2>Built around how your customers buy</h2><p>Help customers return to your DTC store or Amazon Brand Store with a Reorder Magnet designed around your brand and sales channels.</p><div className="g-solution-grid g-solution-grid--channels">{channelFit.map(item => <article className="g-solution-card" id={item.id} key={item.id}><div className="g-solution-card__icon"><img className={`g-solution-card__logo g-solution-card__logo--${item.id}`} src={item.icon} alt="" aria-hidden="true"/></div><h3>{item.title}</h3><p>{item.copy}</p><a href={item.href} target={item.id === 'dtc' ? undefined : '_blank'} rel="noreferrer">{item.cta} <ArrowRight size={18}/></a></article>)}</div></div></section>
 }
 
 function RetentionPhilosophy() {
@@ -304,11 +304,6 @@ function TalkToHommioForm({ open, onClose }) {
   </div>
 }
 
-function ChatWidget() {
-  const [open, setOpen] = useState(false)
-  return <div className="g-chat"><button className="g-chat__toggle" onClick={() => setOpen(v => !v)} aria-label={open ? 'Close chat' : 'Open chat'}>{open ? <X size={22}/> : <img src="/assets/hommio-h-mark.png" alt="" aria-hidden="true"/>}</button>{open && <div className="g-chat__panel"><button className="g-chat__close" onClick={() => setOpen(false)} aria-label="Close chat"><X size={14}/></button><div className="g-chat__brand"><b>Hommio</b></div><p>What brings you here today?</p><a href="#talk-to-us">Talk to Hommio</a><small>Questions about in-home retention? Talk with Hommio.</small></div>}</div>
-}
-
 export default function Givingli() {
   const [sampleRequestOpen, setSampleRequestOpen] = useState(false)
   const [talkFormOpen, setTalkFormOpen] = useState(false)
@@ -316,5 +311,5 @@ export default function Givingli() {
   const closeTalkForm = () => setTalkFormOpen(false)
   const openSampleRequest = () => setSampleRequestOpen(true)
   const closeSampleRequest = () => setSampleRequestOpen(false)
-  return <div className="givingli-site givingli-home-site"><Header onTalk={openTalkForm}/><main><Hero onTalk={openTalkForm} onSampleRequest={openSampleRequest}/><CustomCard/><Solutions/><ScenarioSection/><RetentionPhilosophy/><FAQ/><ContactSection onTalk={openTalkForm} onSampleRequest={openSampleRequest}/></main><ReorderMagnetForm open={sampleRequestOpen} onClose={closeSampleRequest}/><TalkToHommioForm open={talkFormOpen} onClose={closeTalkForm}/><SiteFooter/><ChatWidget/></div>
+  return <div className="givingli-site givingli-home-site"><Header onTalk={openTalkForm}/><main><Hero onTalk={openTalkForm} onSampleRequest={openSampleRequest}/><CustomCard/><Solutions/><ScenarioSection/><RetentionPhilosophy/><FAQ/><ContactSection onTalk={openTalkForm} onSampleRequest={openSampleRequest}/></main><ReorderMagnetForm open={sampleRequestOpen} onClose={closeSampleRequest}/><TalkToHommioForm open={talkFormOpen} onClose={closeTalkForm}/><SiteFooter/></div>
 }

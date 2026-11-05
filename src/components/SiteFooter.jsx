@@ -1,5 +1,5 @@
-import { useEffect, useLayoutEffect, useRef } from 'react'
-import { Linkedin, Mail, MessageCircle, MessageSquareText, Phone } from 'lucide-react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Linkedin, Mail, MessageCircle, MessageSquareText } from 'lucide-react'
 import './site-footer.css'
 
 const DITHER = "url('data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27360%27%20height%3D%27240%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%270%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270.04%27%20stop-color%3D%27%23000%27%2F%3E%3Cstop%20offset%3D%270.96%27%20stop-color%3D%27%23fff%27%2F%3E%3C%2FlinearGradient%3E%3Cfilter%20id%3D%27f%27%20x%3D%270%27%20y%3D%270%27%20width%3D%27100%25%27%20height%3D%27100%25%27%20color-interpolation-filters%3D%27sRGB%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.45%27%20numOctaves%3D%272%27%20seed%3D%277%27%20stitchTiles%3D%27stitch%27%20result%3D%27n%27%2F%3E%3CfeColorMatrix%20in%3D%27n%27%20type%3D%27matrix%27%20values%3D%271%200%200%200%200%201%200%200%200%200%201%200%200%200%200%200%200%200%200%201%27%20result%3D%27ng%27%2F%3E%3CfeComposite%20in%3D%27SourceGraphic%27%20in2%3D%27ng%27%20operator%3D%27arithmetic%27%20k2%3D%270.5%27%20k3%3D%270.5%27%20result%3D%27s%27%2F%3E%3CfeComponentTransfer%20in%3D%27s%27%20result%3D%27t%27%3E%3CfeFuncR%20type%3D%27discrete%27%20tableValues%3D%270%201%27%2F%3E%3C%2FfeComponentTransfer%3E%3CfeColorMatrix%20in%3D%27t%27%20type%3D%27matrix%27%20values%3D%270%200%200%200%201%200%200%200%200%200.5%200%200%200%200%200%201%200%200%200%200%27%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27url%28%23g%29%27%20filter%3D%27url%28%23f%29%27%2F%3E%3C%2Fsvg%3E')"
@@ -12,9 +12,9 @@ const DITHER_STYLES = `
 .df-dots {
   position: absolute; top: 0; bottom: 0; left: 0;
   width: calc(100% + 360px);
-  background: var(--df-accent);
-  -webkit-mask-image: radial-gradient(circle, #000 0.9px, transparent 1.3px), linear-gradient(to bottom, rgb(0 0 0 / .48) 0%, rgb(0 0 0 / .68) 42%, #000 100%);
-  mask-image: radial-gradient(circle, #000 0.9px, transparent 1.3px), linear-gradient(to bottom, rgb(0 0 0 / .48) 0%, rgb(0 0 0 / .68) 42%, #000 100%);
+  background: linear-gradient(to bottom, #455575, #91a6d0);
+  -webkit-mask-image: radial-gradient(circle, #000 0.9px, transparent 1.3px), linear-gradient(to bottom, rgb(0 0 0 / .04) 0%, rgb(0 0 0 / .22) 30%, rgb(0 0 0 / .76) 70%, #000 100%);
+  mask-image: radial-gradient(circle, #000 0.9px, transparent 1.3px), linear-gradient(to bottom, rgb(0 0 0 / .04) 0%, rgb(0 0 0 / .22) 30%, rgb(0 0 0 / .76) 70%, #000 100%);
   -webkit-mask-size: 4px 4px, 100% 100%;
   mask-size: 4px 4px, 100% 100%;
   -webkit-mask-repeat: repeat, no-repeat;
@@ -41,24 +41,53 @@ const links = [
   ['FAQ', '/#faq'],
 ]
 
-// Add the real hrefs here once the contact details are confirmed. Until then,
-// the channels remain visible as labels without linking to placeholder addresses.
 const contacts = [
-  { label: 'Phone', icon: Phone, href: null },
-  { label: 'Email', icon: Mail, href: null },
-  { label: 'LinkedIn', icon: Linkedin, href: null },
-  { label: 'WhatsApp', icon: MessageCircle, href: null },
-  { label: 'SMS', icon: MessageSquareText, href: null },
+  { label: 'Email', value: 'billy@fridgechannels.com', showValue: false, icon: Mail, href: 'mailto:billy@fridgechannels.com' },
+  { label: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/jiehao/' },
+  { label: 'WhatsApp', value: '+1 972-900-0833', showValue: false, icon: MessageCircle, href: 'https://wa.me/19729000833' },
+  { label: 'SMS', value: '+1 972-900-0833', showValue: false, icon: MessageSquareText, href: 'sms:+19729000833' },
 ]
 
 export default function SiteFooter() {
+  const [copyStatus, setCopyStatus] = useState(null)
   const mainRef = useRef(null)
   const smsRef = useRef(null)
   const ditherRef = useRef(null)
   const fieldRef = useRef(null)
   const frameRef = useRef(0)
+  const copyTimerRef = useRef(0)
 
-  useEffect(() => () => cancelAnimationFrame(frameRef.current), [])
+  useEffect(() => () => {
+    cancelAnimationFrame(frameRef.current)
+    window.clearTimeout(copyTimerRef.current)
+  }, [])
+
+  async function copyContact(label, text, button) {
+    let copied = false
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text)
+        copied = true
+      }
+    } catch {
+      // Try the fallback below when clipboard access is unavailable.
+    }
+    if (!copied) {
+      const field = document.createElement('textarea')
+      field.value = text
+      field.setAttribute('readonly', '')
+      field.style.cssText = 'position:fixed;top:0;left:0;opacity:0;'
+      document.body.appendChild(field)
+      field.focus()
+      field.select()
+      try { copied = document.execCommand('copy') } catch { copied = false }
+      field.remove()
+      button?.focus({ preventScroll: true })
+    }
+    window.clearTimeout(copyTimerRef.current)
+    setCopyStatus({ label, message: copied ? 'Copied ✓' : 'Unable to copy' })
+    copyTimerRef.current = window.setTimeout(() => setCopyStatus(null), 2500)
+  }
 
   useLayoutEffect(() => {
     const main = mainRef.current
@@ -120,12 +149,14 @@ export default function SiteFooter() {
       <div className="site-footer__contact" aria-label="Contact channels">
         <h2>Get in touch</h2>
         <ul>
-          {contacts.map(({ label, icon: Icon, href }) => <li key={label} ref={label === 'SMS' ? smsRef : undefined}>
-            {href
-              ? <a href={href}><Icon aria-hidden="true"/><span>{label}</span></a>
-              : <span className="site-footer__contact-label"><Icon aria-hidden="true"/><span>{label}</span></span>}
+          {contacts.map(({ label, value, showValue = true, icon: Icon, href }) => <li key={label} ref={label === 'SMS' ? smsRef : undefined}>
+            <button type="button" onClick={event => copyContact(label, value || href, event.currentTarget)} aria-label={`Copy ${label}${value ? `: ${value}` : ' profile link'}`}>
+              <Icon aria-hidden="true"/>
+              <span className="site-footer__contact-copy"><span className="site-footer__contact-heading"><span>{label}</span><span className="site-footer__copy-status" aria-hidden="true">{copyStatus?.label === label ? copyStatus.message : ''}</span></span>{value && showValue && <small className="site-footer__contact-value">{value}</small>}</span>
+            </button>
           </li>)}
         </ul>
+        <span className="site-footer__copy-announcement" role="status" aria-live="polite">{copyStatus ? `${copyStatus.label}: ${copyStatus.message}` : ''}</span>
       </div>
     </div>
 

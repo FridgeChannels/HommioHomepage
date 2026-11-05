@@ -194,13 +194,7 @@ function ReorderMagnetForm({ open, onClose }) {
             {field('request-city', 'City', { required: true, autoComplete: 'shipping address-level2', onChange: () => setStatus('') })}
             {field('request-state', 'State / province / region', { autoComplete: 'shipping address-level1',  })}
             {field('request-postal-code', 'ZIP / postal code', { autoComplete: 'shipping postal-code',  })}
-            <details className="g-request-form__delivery-phone g-request-form__field--full">
-              <summary>Delivery phone number </summary>
-              <div className="g-request-form__delivery-phone-body">
-                <label htmlFor="request-delivery-phone">Delivery phone number</label>
-                <input id="request-delivery-phone" name="deliveryPhone" type="tel" autoComplete="shipping tel"/>
-              </div>
-            </details>
+            {field('request-delivery-phone', 'Delivery phone number', { required: true, type: 'tel', autoComplete: 'shipping tel', full: true, onChange: () => setStatus('') })}
             <div className="g-contact-form__field g-request-form__field g-request-form__field--full">
               <label htmlFor="request-delivery-instructions">Delivery instructions</label>
               <textarea id="request-delivery-instructions" name="deliveryInstructions" rows="3" autoComplete="off"/>
@@ -291,6 +285,7 @@ function TalkToHommioForm({ open, onClose }) {
             <div className="g-contact-form__field g-request-form__field"><label htmlFor="talk-full-name">Full name <b>*</b></label><input id="talk-full-name" name="fullName" autoComplete="name" required/></div>
             <div className="g-contact-form__field g-request-form__field"><label htmlFor="talk-work-email">Work email <b>*</b></label><input id="talk-work-email" name="workEmail" type="email" autoComplete="email" required/></div>
             <div className="g-contact-form__field g-request-form__field"><label htmlFor="talk-brand-name">Brand / company name <b>*</b></label><input id="talk-brand-name" name="brandName" autoComplete="organization" required/></div>
+            <div className="g-contact-form__field g-request-form__field"><label htmlFor="talk-phone">Phone number <b>*</b></label><input id="talk-phone" name="phoneNumber" type="tel" autoComplete="tel" required/></div>
             <div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label id="talk-channel-label" htmlFor="talk-channel">Which channel would you like to explore? <b>*</b></label><FormSelect id="talk-channel" name="channel" value={channel} onChange={value => { setChannel(value); setStatus('') }} placeholder="Select a channel" options={[{ value: 'dtc', label: 'DTC / Our own online store' }, { value: 'amazon', label: 'Amazon' }, { value: 'both', label: 'Both DTC and Amazon' }, { value: 'other', label: 'Other / Not sure yet' }]}/></div>
             <fieldset className="g-talk-form__goals g-request-form__field--full"><legend>What would you most like to improve? <b>*</b></legend><p>Choose up to two.</p><div className="g-checkboxes">{improvementOptions.map(option => <label key={option}><input type="checkbox" name="improvements" value={option} checked={improvements.includes(option)} disabled={improvements.length >= 2 && !improvements.includes(option)} onChange={() => { toggleImprovement(option); setStatus('') }}/><span>{option}</span></label>)}</div></fieldset>
           </div>

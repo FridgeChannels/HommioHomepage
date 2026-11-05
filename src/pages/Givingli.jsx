@@ -111,15 +111,16 @@ function ContactForm() {
     <blockquote><img src="/assets/hommio-logo-transparent.png" alt="Hommio"/><p>Retention is at home.</p><cite>Let’s build your plan</cite></blockquote>
     <div className="g-contact-form__field"><label>(01) Work email <b>*</b></label><input type="email" placeholder="you@brand.com" required/></div>
     <div className="g-contact-form__field"><label>(02) Full name <b>*</b></label><input placeholder="Your name" required/></div>
-    <div className="g-contact-form__field"><label>(03) Brand / company name <b>*</b></label><input placeholder="Your brand" required/></div>
-    <div className="g-contact-form__field"><label>(04) Your role <b>*</b></label><select required defaultValue=""><option value="" disabled>Select your role</option>{['Founder / Owner','Marketing','Ecommerce','Retention / CRM','Brand','Other'].map(x => <option key={x}>{x}</option>)}</select></div>
-    <div className="g-contact-form__field"><label>(05) Primary sales channel <b>*</b></label><select required defaultValue=""><option value="" disabled>Select a channel</option>{['DTC store','Amazon Brand Store','Both','Other'].map(x => <option key={x}>{x}</option>)}</select></div>
+    <div className="g-contact-form__field"><label htmlFor="legacy-phone">(03) Phone number <b>*</b></label><input id="legacy-phone" name="phoneNumber" type="tel" autoComplete="tel" placeholder="Your phone number" required/></div>
+    <div className="g-contact-form__field"><label>(04) Brand / company name <b>*</b></label><input placeholder="Your brand" required/></div>
+    <div className="g-contact-form__field"><label>(05) Your role <b>*</b></label><select required defaultValue=""><option value="" disabled>Select your role</option>{['Founder / Owner','Marketing','Ecommerce','Retention / CRM','Brand','Other'].map(x => <option key={x}>{x}</option>)}</select></div>
+    <div className="g-contact-form__field"><label>(06) Primary sales channel <b>*</b></label><select required defaultValue=""><option value="" disabled>Select a channel</option>{['DTC store','Amazon Brand Store','Both','Other'].map(x => <option key={x}>{x}</option>)}</select></div>
     <div className="g-contact-form__optional"><b>Optional · Tell us more</b><p>Share a few details about your products and retention goals so we can shape a useful first conversation.</p></div>
-    <div className="g-contact-form__field"><label>(06) Product category</label><input placeholder="For example, food, beverage, or personal care"/></div>
-    <fieldset className="g-contact-form__field"><legend>(07) What would you like to explore?</legend><p>Select all that apply</p><div className="g-checkboxes">{['In-home retention','Reorder Magnet design','DTC customer journey','Amazon customer journey','Sampling or launch campaign','Other'].map(x => <label key={x}><input type="checkbox"/> {x}</label>)}</div></fieldset>
-    <div className="g-contact-form__field"><label>(08) Estimated annual order volume</label><select defaultValue=""><option value="" disabled>Select a range</option>{['Under 5,000','5,000–25,000','25,000–100,000','100,000+','Not sure yet'].map(x => <option key={x}>{x}</option>)}</select></div>
-    <div className="g-contact-form__field"><label>(09) When are you looking to start?</label><select defaultValue=""><option value="" disabled>Select a timeline</option>{['As soon as possible','1–3 months','3–6 months','Just exploring'].map(x => <option key={x}>{x}</option>)}</select></div>
-    <div className="g-contact-form__field"><label>(10) Anything else we should know?</label><textarea rows="3"/></div>
+    <div className="g-contact-form__field"><label>(07) Product category</label><input placeholder="For example, food, beverage, or personal care"/></div>
+    <fieldset className="g-contact-form__field"><legend>(08) What would you like to explore?</legend><p>Select all that apply</p><div className="g-checkboxes">{['In-home retention','Reorder Magnet design','DTC customer journey','Amazon customer journey','Sampling or launch campaign','Other'].map(x => <label key={x}><input type="checkbox"/> {x}</label>)}</div></fieldset>
+    <div className="g-contact-form__field"><label>(09) Estimated annual order volume</label><select defaultValue=""><option value="" disabled>Select a range</option>{['Under 5,000','5,000–25,000','25,000–100,000','100,000+','Not sure yet'].map(x => <option key={x}>{x}</option>)}</select></div>
+    <div className="g-contact-form__field"><label>(10) When are you looking to start?</label><select defaultValue=""><option value="" disabled>Select a timeline</option>{['As soon as possible','1–3 months','3–6 months','Just exploring'].map(x => <option key={x}>{x}</option>)}</select></div>
+    <div className="g-contact-form__field"><label>(11) Anything else we should know?</label><textarea rows="3"/></div>
     <button className="g-contact-form__submit" type="submit">{sent ? "We'll reply within one business day." : "Talk to Hommio"}</button>
   </form></section>
 }

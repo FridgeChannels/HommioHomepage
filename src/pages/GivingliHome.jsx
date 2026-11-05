@@ -13,10 +13,10 @@ const channelFit = [
 ]
 
 const scenarios = [
-  { title: 'Boost Reorders & Subscriptions', copy: "Make repeat purchases and subscriptions easier. Give customers a direct way to reorder their favorites or subscribe whenever they're ready.", image: '/assets/scenarios/golden-star-snowy-peaks.png', alt: 'A golden star above snowy mountain peaks', width: 1086, height: 1448 },
-  { title: 'Seasonal gifts and promotions', copy: 'Add a branded Reorder Magnet to seasonal gifts or promotional bundles. Give customers something to keep after the occasion is over.', image: '/assets/scenarios/christmas-gift-box.png', alt: 'A Christmas gift box with a golden bow', width: 1083, height: 1452 },
-  { title: 'Product sampling and launches', copy: 'Pair samples or new products with a Reorder Magnet so customers can find product information, share feedback, or return to buy.', image: '/assets/scenarios/new-product-poster.png', alt: 'A new product announcement revealed through torn paper', width: 1122, height: 1402 },
-  { title: 'Engagement and member programs', copy: 'Include a Reorder Magnet in your member welcome kit or engagement gifts. Give your customers a lasting connection to your brand at home.', image: '/assets/scenarios/membership-card.png', alt: 'Hands exchanging a membership card', width: 1124, height: 1399 },
+  { image: '/assets/scenarios/golden-star-snowy-peaks.png', alt: 'Boost Reorders and Subscriptions poster', width: 1086, height: 1448 },
+  { image: '/assets/scenarios/christmas-gift-box.png', alt: 'Seasonal gifts and promotions poster', width: 1086, height: 1448 },
+  { image: '/assets/scenarios/new-product-poster.png', alt: 'Product sampling and launches poster', width: 1086, height: 1448 },
+  { image: '/assets/scenarios/membership-card.png', alt: 'Engagement and member programs poster', width: 1086, height: 1448 },
 ]
 
 const faqs = [
@@ -88,9 +88,8 @@ function ScenarioSection() {
   return <section className="g-how" id="scenarios">
     <div className="g-section-intro"><h2>What secnario to use Hommio ?</h2></div>
     <div className="g-step-grid">
-      {scenarios.map(({ title, copy, image, alt, width, height }) => <article className="g-scenario-item" key={title}>
+      {scenarios.map(({ image, alt, width, height }) => <article className="g-scenario-item" key={image}>
         <div className="g-scenario-art-frame"><img className="g-scenario-art" src={image} alt={alt} width={width} height={height} loading="lazy" decoding="async"/></div>
-        <div className="g-scenario-copy"><h3>{title}</h3><p>{copy}</p></div>
       </article>)}
     </div>
   </section>

@@ -18,20 +18,30 @@ const principles = [
   {
     number: '02',
     title: 'Every Sale Strengthens the Channel.',
-    subtitle: 'A channel’s work does not end at checkout.',
+    subtitle: '',
     paragraphs: [
-      'Every product that reaches a home is an opportunity to make that channel easier to return to. Sales are not just what a channel produces. They are how it grows stronger.',
-      'A lasting, useful touchpoint can help customers reorder through the same retailer, marketplace, or brand store where they bought the product. Each sale should do more than generate revenue: it should strengthen the channel’s ability to generate future sales.',
+      'A channel’s work does not end at checkout. Every product that reaches a home is an opportunity to make that channel easier to return to. Sales are not just what a channel produces. They are how it grows stronger.',
+      'Channels generate sales. But a sale should not be the end of the channel’s work. When a product enters the home, it creates an opportunity to make that channel easier to return to. A lasting, useful touchpoint can help customers reorder through the same retailer, marketplace, or brand store where they bought the product. Each sale should therefore do more than generate revenue: it should strengthen the channel’s ability to generate future sales.',
     ],
     refrain: 'Channels generate sales. Sales should strengthen channels.',
   },
   {
     number: '03',
     title: 'Intelligence Begins Where the Product Is Consumed.',
-    subtitle: 'The deeper understanding comes from what happens next.',
+    subtitle: '',
     paragraphs: [
-      'A sale tells a brand what was bought. The deeper understanding comes from how the product fits into a household’s routines, what people need from it, and when they need it again.',
+      'A sale tells a brand what was bought. The deeper understanding comes from what happens next: how the product fits into a household’s routines, what people need from it, and when they need it again.',
       'By staying connected where the product is consumed, a brand can learn from those experiences and show care in ways that matter—making everyday life easier and giving customers a reason to return.',
+    ],
+  },
+  {
+    number: '04',
+    title: 'Reorder in 10 Seconds, Without Being Hijacked.',
+    subtitle: '',
+    paragraphs: [
+      'The customer has already chosen the product. They should not have to search for it again, scroll past competing ads, or be redirected on the way to reorder. And the brand should not have to pay for advertising to reach a customer it has already earned.',
+      'Hommio should take the customer straight from the home back to the original selling channel—whether a brand store, retailer, or marketplace. The goal is to make reordering possible in 10 seconds, without search engines or advertising systems getting in the way.',
+      'The channel may still charge its normal selling fees. But the customer’s decision to return should not be an opportunity for someone else to charge the brand for their attention.',
     ],
   },
 ]
@@ -58,9 +68,8 @@ export default function Philosophy() {
     <Header/>
     <main>
       <section className="philosophy-hero">
-        <span className="philosophy-kicker">The Hommio point of view</span>
+        <span className="philosophy-kicker">Declaration</span>
         <h1>Retention<br/><em>is at home.</em></h1>
-        <p>Lasting customer relationships are built in the moments and routines that make up everyday life.</p>
         <a className="philosophy-scroll" href="#principles">Explore the principles <ArrowDown size={15}/></a>
       </section>
       <section className="philosophy-principles" id="principles" aria-label="Retention principles">
@@ -69,17 +78,12 @@ export default function Philosophy() {
           <div className="philosophy-principle__content">
             <span className="philosophy-principle__eyebrow">Principle</span>
             <h2>{item.title}</h2>
-            <h3>{item.subtitle}</h3>
+            {item.subtitle && <h3>{item.subtitle}</h3>}
             {item.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
             {item.quote && <blockquote>{item.quote}</blockquote>}
             {item.refrain && <p className="philosophy-refrain">{item.refrain}</p>}
           </div>
         </article>)}
-      </section>
-      <section className="philosophy-contact" id="contact">
-        <span>Made for everyday life</span>
-        <h2>Make your brand<br/>part of the home.</h2>
-        <a href="/#talk-to-us">Talk to Hommio</a>
       </section>
     </main>
     <SiteFooter/>

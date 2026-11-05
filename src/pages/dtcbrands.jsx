@@ -124,7 +124,7 @@ function EconomicsSection() {
         />
         <div className="dtc-dashboard-hint" aria-hidden="true" style={{ '--hint-top': `${dashboardHintTop}px` }}>
           <svg className="dtc-dashboard-hint__arrow" viewBox="0 0 72 46" fill="none"><path d="M68 7 C48 4 51 31 9 29 M19 22 L8 29 L18 36" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M64 10 C51 10 50 24 33 28" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity=".55"/></svg>
-          <span className="dtc-dashboard-hint__text">select a period to<br/>see the numbers change</span>
+          <span className="dtc-dashboard-hint__text">select a period</span>
         </div>
       </div>
     </div>

@@ -50,7 +50,7 @@ function GLogo({ footer = false }) {
 function Header({ onTalk }) {
   return <header className="g-header"><div className="g-header__inner">
     <div className="g-header__brand"><GLogo/></div>
-    <nav className="g-nav" aria-label="Main navigation"><a href="#top">Hommio</a><div className="g-nav__item"><a href="#solutions">Solutions <ChevronDown size={13}/></a><div className="g-nav__menu"><a href="#dtc">For DTC Brands</a><a href="#amazon">For Amazon Brands</a></div></div><a href="https://app.notion.com/p/Pricing-ROI-Calculator-40e9166fd9fd800d832fe88c51cb3236?pvs=21" target="_blank" rel="noreferrer">Pricing &amp; ROI Calculator</a><a href="#retention-philosophy">Retention Philosophy</a></nav>
+    <nav className="g-nav" aria-label="Main navigation"><a href="#top">Hommio</a><div className="g-nav__item"><a href="#solutions">Solutions <ChevronDown size={13}/></a><div className="g-nav__menu"><a href="#dtc">For DTC Brands</a><a href="/amazonbrands">For Amazon Brands</a></div></div><a href="https://app.notion.com/p/Pricing-ROI-Calculator-40e9166fd9fd800d832fe88c51cb3236?pvs=21" target="_blank" rel="noreferrer">Pricing &amp; ROI Calculator</a><a href="#retention-philosophy">Retention Philosophy</a></nav>
     <div className="g-header__actions"><button className="g-header-button g-header-button--blue" onClick={onTalk}>Talk to Hommio</button></div>
   </div></header>
 }

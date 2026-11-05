@@ -32,7 +32,7 @@ function Header({ onTalk }) {
     <nav className="g-nav" aria-label="Main navigation">
       <a href="/">Hommio</a>
       <a href="/dtcbrands">For DTC Brands</a>
-      <a href="#amazon">For Amazon Brands</a>
+      <a href="/amazonbrands">For Amazon Brands</a>
       <a href="/philosophy">Our Philosophy</a>
     </nav>
     <div className="g-header__actions"><button className="g-header-button g-header-button--blue" onClick={onTalk}>Talk to Hommio</button></div>

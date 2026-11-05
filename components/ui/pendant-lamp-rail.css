@@ -117,3 +117,9 @@
 @media (prefers-reduced-motion: reduce) {
   .plr-pendulum,.plr-image--on,.plr-light-pool,.plr-light-beam { transition: none; }
 }
+
+.plr-help-group { margin: 10px auto 0; max-width: 46ch; text-align: left; }
+.plr-detail-label { margin: 0 0 4px; color: #f6f1ea; font-size: 13px; font-weight: 650; line-height: 1.5; }
+.plr-help-group ul { display: grid; gap: 3px; margin: 0; padding-left: 18px; color: rgb(246 241 234 / .76); font-size: 13px; line-height: 1.55; }
+.plr-measure { margin: 9px auto 0; max-width: 46ch; color: rgb(246 241 234 / .76); font-size: 13px; line-height: 1.55; }
+.plr-measure strong { color: #f6f1ea; font-weight: 650; }

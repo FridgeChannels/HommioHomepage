@@ -14,7 +14,8 @@ export interface PendantLamp {
   drop?: number;
   glow?: string;
   tag?: string;
-  details?: string[];
+  help?: string[];
+  measure?: string;
 }
 
 export interface PendantLampRailProps extends React.ComponentProps<"section"> {
@@ -342,7 +343,11 @@ export function PendantLampRail({
           </p>
           {current?.description && <p className="mx-auto mt-1 max-w-[46ch] text-balance text-[13px] leading-relaxed text-muted-foreground">{current.description}</p>}
           {current?.body && <p className="mx-auto mt-1 max-w-[46ch] text-balance text-[13px] leading-relaxed text-muted-foreground">{current.body}</p>}
-          {current?.details?.map(detail => <p key={detail} className="mx-auto mt-1 max-w-[46ch] text-balance text-[13px] leading-relaxed text-muted-foreground">{detail}</p>)}
+          {current?.help?.length ? <div className="plr-help-group">
+            <p className="plr-detail-label">How HOMMIO can help</p>
+            <ul>{current.help.map(item => <li key={item}>{item}</li>)}</ul>
+          </div> : null}
+          {current?.measure && <p className="plr-measure"><strong>What to measure:</strong> {current.measure}</p>}
       </div>
       <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-3">
         <span aria-hidden="true" />

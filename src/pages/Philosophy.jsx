@@ -46,7 +46,7 @@ function Header() {
     <nav className={`g-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
       <a href="/" onClick={closeMenu}>Hommio</a>
       <a href="/dtcbrands" onClick={closeMenu}>For DTC Brands</a>
-      <a href="/#amazon" onClick={closeMenu}>For Amazon Brands</a>
+      <a href="/amazonbrands" onClick={closeMenu}>For Amazon Brands</a>
       <a href="/philosophy" aria-current="page" onClick={closeMenu}>Our Philosophy</a>
     </nav>
     <a className="g-header-button g-header-button--blue philosophy-header-cta" href="/#talk-to-us">Talk to Hommio</a>

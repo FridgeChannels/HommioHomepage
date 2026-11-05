@@ -36,7 +36,7 @@ const DITHER_STYLES = `
 const links = [
   ['Home', '/#top'],
   ['For DTC Brands', '/dtcbrands'],
-  ['For Amazon Brands', '/#amazon'],
+  ['For Amazon Brands', '/amazonbrands'],
   ['Our Philosophy', '/philosophy'],
   ['FAQ', '/#faq'],
 ]

@@ -38,7 +38,7 @@ function Header({ onTalk }) {
     <nav className="g-nav" aria-label="Main navigation">
       <a href="#top">Hommio</a>
       <a href="/dtcbrands">For DTC Brands</a>
-      <a href="#amazon">For Amazon Brands</a>
+      <a href="/amazonbrands">For Amazon Brands</a>
       <a href="/philosophy">Our Philosophy</a>
     </nav>
     <div className="g-header__actions"><button className="g-header-button g-header-button--blue" onClick={onTalk}>Talk to Hommio</button></div>
@@ -63,7 +63,7 @@ function Hero({ onTalk, onSampleRequest }) {
   ]
   const positions = ['left', 'right', 'lower-left', 'lower-right']
   return <section className="g-hero" id="top">
-    <div className="g-hero__title"><h1>Retention <span>is</span>{' '}<span className="g-hero-cover"><span className="g-hero-cover__text"><em>at home</em></span><span className="g-hero-cover__sparkles" aria-hidden="true"/><span className="g-hero-cover__corners" aria-hidden="true"/></span></h1><h2>In-home retention solution for CPG brands</h2><p>Hommio helps customers remember your brand and buy from you again. We plan how to reach the right households, create a Reorder Magnet they can keep at home, and personalize what happens when they tap.</p><div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><a href="#request-sample" onClick={event => { event.preventDefault(); onSampleRequest() }}>Request a Sample</a></div></div>
+    <div className="g-hero__title"><h1>Retention <span>is</span>{' '}<em>at home</em></h1><h2>In-home retention solution for CPG brands</h2><p>Hommio helps customers remember your brand and buy from you again. We plan how to reach the right households, create a Reorder Magnet they can keep at home, and personalize what happens when they tap.</p><div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><a href="#request-sample" onClick={event => { event.preventDefault(); onSampleRequest() }}>Request a Sample</a></div></div>
     <div className="g-hero__objects" aria-hidden="true"><div className="g-hero__glow"/>{positions.map((position, index) => <HeroGiftStack key={position} position={position} index={index} media={heroMedia}/>)}</div>
   </section>
 }

@@ -1,6 +1,6 @@
 import SiteFooter from '../components/SiteFooter.jsx'
-import { useEffect, useState } from 'react'
-import { ArrowRight, ChevronDown, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ArrowRight, X } from 'lucide-react'
 import './givingli-home.css'
 
 const root = 'https://givingli.com'
@@ -8,12 +8,12 @@ const img = (path) => `${root}${path}`
 
 
 const channelFit = [
-  { id: 'dtc', title: 'A way back to your DTC store', copy: 'Include a Reorder Magnet with your customers’ orders. Give them a simple way to return to your products, content, or reorder page when they need it.', cta: 'Explore Hommio for DTC Brands', href: 'https://app.notion.com/p/DTC-40e9166fd9fd80338d73d17c239779df?pvs=21', icon: '/assets/dtc-online-store.svg' },
-  { id: 'amazon', title: 'A way back to your Amazon Brand Store', copy: 'Give customers a direct route from their home to your Amazon Brand Store—without starting with another search.', cta: 'Explore Hommio for Amazon Brands', href: 'https://app.notion.com/p/Amazon-40e9166fd9fd803f8f2bfa3c794f5c41?pvs=21', icon: '/assets/amazon-logo-squid-ink-smile-orange.png' },
+  { id: 'dtc', title: 'A way back to your DTC store', copy: 'Include a Reorder Magnet with your customers’ orders. Give them a simple way to return to your products, content, or reorder page when they need it.', cta: 'Explore Hommio for DTC Brands', href: 'https://app.notion.com/p/DTC-40e9166fd9fd80338d73d17c239779df?pvs=21', icon: '/assets/dtc-online-store-shopify-green.svg' },
+  { id: 'amazon', title: 'A way back to your Amazon Brand Store', copy: 'Give customers a direct route from their home to your Amazon Brand Store—without starting with another search.', cta: 'Explore Hommio for Amazon Brands', href: 'https://app.notion.com/p/Amazon-40e9166fd9fd803f8f2bfa3c794f5c41?pvs=21', icon: '/assets/amazon-browser-package-icon.png' },
 ]
 
 const scenarios = [
-  { title: 'Ongoing in-home retention', copy: 'Make a Reorder Magnet part of your ongoing retention strategy. Keep your brand within reach between purchases and give customers an easy way back.', image: '/assets/scenarios/golden-star-snowy-peaks.png', alt: 'A golden star above snowy mountain peaks', width: 1086, height: 1448 },
+  { title: 'Boost Reorders & Subscriptions', copy: "Make repeat purchases and subscriptions easier. Give customers a direct way to reorder their favorites or subscribe whenever they're ready.", image: '/assets/scenarios/golden-star-snowy-peaks.png', alt: 'A golden star above snowy mountain peaks', width: 1086, height: 1448 },
   { title: 'Seasonal gifts and promotions', copy: 'Add a branded Reorder Magnet to seasonal gifts or promotional bundles. Give customers something to keep after the occasion is over.', image: '/assets/scenarios/christmas-gift-box.png', alt: 'A Christmas gift box with a golden bow', width: 1083, height: 1452 },
   { title: 'Product sampling and launches', copy: 'Pair samples or new products with a Reorder Magnet so customers can find product information, share feedback, or return to buy.', image: '/assets/scenarios/new-product-poster.png', alt: 'A new product announcement revealed through torn paper', width: 1122, height: 1402 },
   { title: 'Engagement and member programs', copy: 'Include a Reorder Magnet in your member welcome kit or engagement gifts. Give your customers a lasting connection to your brand at home.', image: '/assets/scenarios/membership-card.png', alt: 'Hands exchanging a membership card', width: 1124, height: 1399 },
@@ -35,30 +35,36 @@ function GLogo({ footer = false }) {
 function Header({ onTalk }) {
   return <header className="g-header"><div className="g-header__inner">
     <div className="g-header__brand"><GLogo/></div>
-    <nav className="g-nav" aria-label="Main navigation"><a href="#top">Hommio</a><div className="g-nav__item"><a href="#solutions">Solutions <ChevronDown size={13}/></a><div className="g-nav__menu"><a href="#dtc">For DTC Brands</a><a href="#amazon">For Amazon Brands</a></div></div><a href="https://app.notion.com/p/Pricing-ROI-Calculator-40e9166fd9fd800d832fe88c51cb3236?pvs=21" target="_blank" rel="noreferrer">Pricing &amp; ROI Calculator</a><a href="/philosophy">Retention Philosophy</a></nav>
+    <nav className="g-nav" aria-label="Main navigation">
+      <a href="#top">Hommio</a>
+      <a href="/dtcbrands">For DTC Brands</a>
+      <a href="#amazon">For Amazon Brands</a>
+      <a href="/philosophy">Our Philosophy</a>
+    </nav>
     <div className="g-header__actions"><button className="g-header-button g-header-button--blue" onClick={onTalk}>Talk to Hommio</button></div>
   </div></header>
 }
 
+function HeroGiftStack({ media, position, index }) {
+  const asset = media[index]
+  return <div className={`g-hero-gift-stack g-hero-gift-stack--${position}`}>
+    {asset.type === 'video'
+      ? <video className="g-hero-float" src={asset.src} autoPlay muted loop playsInline aria-label={asset.alt}/>
+      : <img className="g-hero-float" src={asset.src} alt={asset.alt} loading="eager" decoding="async"/>}
+  </div>
+}
+
 function Hero({ onTalk, onSampleRequest }) {
-  const [activeFloat, setActiveFloat] = useState(0)
-  const floatSlides = [
-    ['/images/business-gifting/hero/Starbucks.png', "/images/business-gifting/hero/let's%20grab%20coffee.png"],
-    ['/images/business-gifting/hero/Sephora.png', '/images/business-gifting/hero/can%27t%20thank%20you%20enough.png'],
-    ['/images/business-gifting/hero/Target.png', '/images/business-gifting/hero/congratulation.png'],
-    ['/images/business-gifting/hero/Nike.png', '/images/business-gifting/hero/hey%2C%20thanks.png'],
-    ['/images/business-gifting/hero/Doordash.png', '/images/business-gifting/hero/treat%20on%20me.png'],
-    ['/images/business-gifting/hero/Dunkin%E2%80%99.png', '/images/business-gifting/hero/best%20boss.png'],
-    ['/images/business-gifting/hero/Best%20Buy.png', '/images/business-gifting/hero/well%20done.png'],
-    ['/images/business-gifting/hero/Delta.png', "/images/business-gifting/hero/you're%20going%20places.png"],
+  const heroMedia = [
+    { src: '/assets/home-hero/dog-choice.mp4', type: 'video', alt: 'Dog choosing a Hommio reorder magnet' },
+    { src: '/assets/home-hero/hero-frame-2.png', type: 'image', alt: 'Customer considering a product on a refrigerator magnet' },
+    { src: '/assets/home-hero/fridge-scene.png', type: 'image', alt: 'Customer reaching into a refrigerator with a Hommio magnet nearby' },
+    { src: '/assets/home-hero/dtc-who-we-serve.png', type: 'image', alt: 'Example DTC coffee brand magnet' },
   ]
-  useEffect(() => {
-    const timer = window.setInterval(() => setActiveFloat(index => (index + 1) % floatSlides.length), 3200)
-    return () => window.clearInterval(timer)
-  }, [])
+  const positions = ['left', 'right', 'lower-left', 'lower-right']
   return <section className="g-hero" id="top">
-    <div className="g-hero__title"><h1>Retention<br/><span>is at home</span></h1><h2>In-home retention solution for CPG brands</h2><p>Hommio helps customers remember your brand and buy from you again. We plan how to reach the right households, create a Reorder Magnet they can keep at home, and personalize what happens when they tap.</p><div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><a href="#request-sample" onClick={event => { event.preventDefault(); onSampleRequest() }}>Request a Reorder Magnet</a></div></div>
-    <div className="g-hero__objects" aria-hidden="true"><div className="g-hero__glow"/><img className="g-hero-float g-hero-float--left" src={img(floatSlides[activeFloat][0])} alt=""/><img className="g-hero-float g-hero-float--right" src={img(floatSlides[activeFloat][1])} alt=""/></div>
+    <div className="g-hero__title"><h1>Retention <span className="g-hero-cover"><span className="g-hero-cover__text">is <em>at home</em></span><span className="g-hero-cover__sparkles" aria-hidden="true"/><span className="g-hero-cover__corners" aria-hidden="true"/></span></h1><h2>In-home retention solution for CPG brands</h2><p>Hommio helps customers remember your brand and buy from you again. We plan how to reach the right households, create a Reorder Magnet they can keep at home, and personalize what happens when they tap.</p><div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><a href="#request-sample" onClick={event => { event.preventDefault(); onSampleRequest() }}>Request a Sample</a></div></div>
+    <div className="g-hero__objects" aria-hidden="true"><div className="g-hero__glow"/>{positions.map((position, index) => <HeroGiftStack key={position} position={position} index={index} media={heroMedia}/>)}</div>
   </section>
 }
 
@@ -83,7 +89,7 @@ function ScenarioSection() {
     <div className="g-section-intro"><h2>What secnario to use Hommio ?</h2></div>
     <div className="g-step-grid">
       {scenarios.map(({ title, copy, image, alt, width, height }) => <article className="g-scenario-item" key={title}>
-        <img className="g-scenario-art" src={image} alt={alt} width={width} height={height} loading="lazy" decoding="async"/>
+        <div className="g-scenario-art-frame"><img className="g-scenario-art" src={image} alt={alt} width={width} height={height} loading="lazy" decoding="async"/></div>
         <div className="g-scenario-copy"><h3>{title}</h3><p>{copy}</p></div>
       </article>)}
     </div>
@@ -91,7 +97,7 @@ function ScenarioSection() {
 }
 
 function ContactSection({ onTalk, onSampleRequest }) {
-  return <section className="g-contact" id="talk-to-us"><div className="g-contact__intro"><h2>Bring Hommio to your customers’ homes</h2><p>Let’s build a deployment plan, Reorder Magnet, and personalized experience around your brand.</p><div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><a href="#request-sample" onClick={event => { event.preventDefault(); onSampleRequest() }}>Request a Reorder Magnet</a></div></div></section>
+  return <section className="g-contact" id="talk-to-us"><div className="g-contact__intro"><h2>Start Driving Repeat Purchases from Your Customers’ Homes.</h2><p>Put a Reorder Magnet in your customers’ homes and give them a direct way back to your brand.</p><div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><a href="#request-sample" onClick={event => { event.preventDefault(); onSampleRequest() }}>Request a Sample</a></div></div></section>
 }
 
 function ReorderMagnetForm({ open, onClose }) {
@@ -100,6 +106,7 @@ function ReorderMagnetForm({ open, onClose }) {
   const [recipientName, setRecipientName] = useState('')
   const [recipientNameEdited, setRecipientNameEdited] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [channelError, setChannelError] = useState(false)
 
   useEffect(() => {
     if (!open) return
@@ -123,6 +130,8 @@ function ReorderMagnetForm({ open, onClose }) {
   const showOther = channel === 'other'
   const handleSubmit = event => {
     event.preventDefault()
+    if (!channel) { setChannelError(true); document.getElementById('request-channel')?.focus(); return }
+    setChannelError(false)
     setSubmitted(true)
   }
   const field = (id, label, options = {}) => (
@@ -137,7 +146,7 @@ function ReorderMagnetForm({ open, onClose }) {
     <section className="g-request-dialog" role="dialog" aria-modal="true" aria-labelledby="request-sample-title">
       <button className="g-request-dialog__close" type="button" onClick={onClose} aria-label="Close sample request"><X size={19}/></button>
       <form className="g-contact-form g-request-form" onSubmit={handleSubmit}>
-        <blockquote><p id="request-sample-title">Experience a Reorder Magnet for yourself. Tell us about your brand and where you’d like us to send it.</p></blockquote>
+        <blockquote><p id="request-sample-title">Request a Reorder Magnet sample for your brand.</p></blockquote>
 
         <section className="g-request-form__section" aria-labelledby="request-about-title">
           <h3 id="request-about-title">About you</h3>
@@ -146,57 +155,150 @@ function ReorderMagnetForm({ open, onClose }) {
             {field('request-work-email', 'Work email', { required: true, type: 'email', autoComplete: 'email', placeholder: 'you@brand.com', onChange: () => setSubmitted(false) })}
             {field('request-brand-name', 'Brand / company name', { required: true, autoComplete: 'organization', value: undefined, onChange: () => setSubmitted(false) })}
             <div className="g-contact-form__field g-request-form__field g-request-form__field--full">
-              <label htmlFor="request-channel">Which channel would you like to explore? <b>*</b></label>
-              <select id="request-channel" required value={channel} onChange={event => { setChannel(event.target.value); setSubmitted(false) }}>
-                <option value="" disabled>Select a channel</option>
-                <option value="dtc">DTC / Our own online store</option>
-                <option value="amazon">Amazon</option>
-                <option value="both">Both DTC and Amazon</option>
-                <option value="other">Other / Not sure yet</option>
-              </select>
+              <label id="request-channel-label" htmlFor="request-channel">Which channel would you like to explore? <b>*</b></label>
+              <FormSelect id="request-channel" name="channel" value={channel} onChange={value => { setChannel(value); setSubmitted(false); setChannelError(false) }} placeholder="Select a channel" options={[{ value: 'dtc', label: 'DTC / Our own online store' }, { value: 'amazon', label: 'Amazon' }, { value: 'both', label: 'Both DTC and Amazon' }, { value: 'other', label: 'Other / Not sure yet' }]}/>
+              {channelError && <small className="g-request-form__select-error" role="alert">Please select a channel.</small>}
             </div>
           </div>
         </section>
 
         <section className="g-request-form__section" aria-labelledby="request-brand-title">
           <h3 id="request-brand-title">Your brand</h3>
-          <p className="g-request-form__hint">Fields shown here depend on the channel you selected.</p>
           <div className="g-request-form__grid">
             {showDtc && field('request-dtc-url', 'DTC store URL', { required: true, type: 'url', autoComplete: 'url', placeholder: 'https://', full: true, onChange: () => setSubmitted(false) })}
-            {showAmazon && field('request-amazon-url', 'Amazon product or Brand Store URL', { required: true, placeholder: 'URL or ASIN with marketplace', full: true, hint: 'An ASIN with its marketplace is also accepted.', onChange: () => setSubmitted(false) })}
-            {showOther && field('request-brand-url', 'Brand website or store URL (Optional)', { type: 'url', autoComplete: 'url', placeholder: 'https://', full: true, onChange: () => setSubmitted(false) })}
-            {!channel && <p className="g-request-form__hint g-request-form__field--full">Choose a channel to see the matching URL fields.</p>}
+            {showAmazon && field('request-amazon-url', 'Amazon product or Brand Store URL', { required: true, placeholder: 'URL or ASIN with marketplace', full: true, hint: 'Use an ASIN with its marketplace.', onChange: () => setSubmitted(false) })}
+            {showOther && field('request-brand-url', 'Brand website or store URL', { type: 'url', autoComplete: 'url', placeholder: 'https://', full: true, onChange: () => setSubmitted(false) })}
           </div>
         </section>
 
         <section className="g-request-form__section" aria-labelledby="request-shipping-title">
           <h3 id="request-shipping-title">Shipping details</h3>
           <div className="g-request-form__grid">
-            {field('request-recipient-name', 'Recipient name', { required: true, autoComplete: 'shipping name', value: recipientNameEdited ? recipientName : fullName, onChange: event => { setRecipientName(event.target.value); setRecipientNameEdited(true); setSubmitted(false) }, hint: 'Uses your full name by default. You can change it for delivery.' })}
+            {field('request-recipient-name', 'Recipient name', { required: true, autoComplete: 'shipping name', value: recipientNameEdited ? recipientName : fullName, onChange: event => { setRecipientName(event.target.value); setRecipientNameEdited(true); setSubmitted(false) },  })}
             {field('request-country', 'Country / region', { required: true, autoComplete: 'shipping country-name', onChange: () => setSubmitted(false) })}
             {field('request-street-address', 'Street address', { required: true, autoComplete: 'shipping address-line1', full: true, onChange: () => setSubmitted(false) })}
-            {field('request-apartment', 'Apartment, suite, or unit (Optional)', { autoComplete: 'shipping address-line2', full: true })}
+            {field('request-apartment', 'Apartment, suite, or unit', { autoComplete: 'shipping address-line2', full: true })}
             {field('request-city', 'City', { required: true, autoComplete: 'shipping address-level2', onChange: () => setSubmitted(false) })}
-            {field('request-state', 'State / province / region', { autoComplete: 'shipping address-level1', hint: 'Required only where applicable to the destination.' })}
-            {field('request-postal-code', 'ZIP / postal code', { autoComplete: 'shipping postal-code', hint: 'Required only where applicable to the destination.' })}
+            {field('request-state', 'State / province / region', { autoComplete: 'shipping address-level1',  })}
+            {field('request-postal-code', 'ZIP / postal code', { autoComplete: 'shipping postal-code',  })}
             <details className="g-request-form__delivery-phone g-request-form__field--full">
-              <summary>Delivery phone number <small>Only if required by the shipping carrier</small></summary>
+              <summary>Delivery phone number </summary>
               <div className="g-request-form__delivery-phone-body">
                 <label htmlFor="request-delivery-phone">Delivery phone number</label>
                 <input id="request-delivery-phone" type="tel" autoComplete="shipping tel"/>
-                <small>We’ll ask only if required by the shipping carrier. Used for delivery purposes only.</small>
               </div>
             </details>
             <div className="g-contact-form__field g-request-form__field g-request-form__field--full">
-              <label htmlFor="request-delivery-instructions">Delivery instructions (Optional)</label>
+              <label htmlFor="request-delivery-instructions">Delivery instructions</label>
               <textarea id="request-delivery-instructions" rows="3" autoComplete="off"/>
             </div>
           </div>
         </section>
 
         {submitted && <p className="g-request-form__success" role="status">We’ll review your request and contact you about availability and shipping details.</p>}
-        <button className="g-contact-form__submit" type="submit">Request a sample</button>
-        <p className="g-request-form__privacy">We’ll use your details to review your request, arrange sample delivery, and follow up about your sample experience.</p>
+        <button className="g-contact-form__submit" type="submit">Request a Sample</button>
+      </form>
+    </section>
+  </div>
+}
+
+const calendlyUrl = import.meta.env.VITE_CALENDLY_URL || ''
+const improvementOptions = [
+  'Higher repeat-purchase',
+  'Higher subscription conversion rates',
+  'Lower subscriber churn',
+  'Increase average order value (AOV)',
+  'Increase customer lifetime value (LTV)',
+]
+
+function FormSelect({ id, name, value, onChange, options, placeholder }) {
+  const [open, setOpen] = useState(false)
+  const buttonRef = useRef(null)
+  const currentLabel = options.find(option => option.value === value)?.label || placeholder
+  const selectOption = option => { onChange(option.value); setOpen(false); buttonRef.current?.focus() }
+  return <div className="g-form-select">
+    <button ref={buttonRef} id={id} className={`g-form-select__trigger${value ? '' : ' is-placeholder'}`} type="button" role="combobox" aria-haspopup="listbox" aria-expanded={open} aria-controls={`${id}-options`} aria-labelledby={`${id}-label ${id}-value`} onClick={() => setOpen(current => !current)} onKeyDown={event => {
+      if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setOpen(true) }
+      if (event.key === 'Escape') setOpen(false)
+    }}>
+      <span id={`${id}-value`}>{currentLabel}</span><i aria-hidden="true"/>
+    </button>
+    <input type="hidden" name={name} value={value}/>
+    {open && <div className="g-form-select__menu" id={`${id}-options`} role="listbox" aria-labelledby={id}>
+      {options.map(option => <button key={option.value} type="button" role="option" aria-selected={value === option.value} className={value === option.value ? 'is-selected' : ''} onClick={() => selectOption(option)}>{option.label}</button>)}
+    </div>}
+  </div>
+}
+
+function TalkToHommioForm({ open, onClose }) {
+  const [channel, setChannel] = useState('')
+  const [improvements, setImprovements] = useState([])
+  const [status, setStatus] = useState('')
+  useEffect(() => {
+    if (!open) return
+    const previousOverflow = document.body.style.overflow
+    const closeOnEscape = event => { if (event.key === 'Escape') onClose() }
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', closeOnEscape)
+    document.getElementById('talk-full-name')?.focus()
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [open, onClose])
+  if (!open) return null
+  const showDtc = channel === 'dtc' || channel === 'both'
+  const showAmazon = channel === 'amazon' || channel === 'both'
+  const showOther = channel === 'other'
+  const toggleImprovement = value => {
+    setImprovements(current => current.includes(value)
+      ? current.filter(item => item !== value)
+      : current.length < 2 ? [...current, value] : current)
+  }
+  const handleSubmit = event => {
+    event.preventDefault()
+    if (!channel) { setStatus('Select a channel to continue.'); return }
+    if (!improvements.length) { setStatus('Choose at least one improvement area.'); return }
+    if (!calendlyUrl) {
+      setStatus('Please add the Hommio Calendly booking link in the site settings to enable scheduling.')
+      return
+    }
+    const data = new FormData(event.currentTarget)
+    const bookingUrl = new URL(calendlyUrl)
+    const name = String(data.get('fullName') || '')
+    const email = String(data.get('workEmail') || '')
+    if (name) bookingUrl.searchParams.set('name', name)
+    if (email) bookingUrl.searchParams.set('email', email)
+    window.location.assign(bookingUrl.toString())
+  }
+  return <div className="g-request-modal" role="presentation" onMouseDown={event => { if (event.target === event.currentTarget) onClose() }}>
+    <section className="g-request-dialog g-talk-dialog" role="dialog" aria-modal="true" aria-labelledby="talk-form-title">
+      <button className="g-request-dialog__close" type="button" onClick={onClose} aria-label="Close form"><X size={19}/></button>
+      <form className="g-contact-form g-request-form" onSubmit={handleSubmit}>
+        <header className="g-talk-form__header"><h2 id="talk-form-title">Talk to Hommio</h2><p>Share a few details so we can tailor our conversation.</p></header>
+        <section className="g-request-form__section" aria-labelledby="talk-about-title">
+          <h3 id="talk-about-title">About you</h3><div className="g-request-form__grid">
+            <div className="g-contact-form__field g-request-form__field"><label htmlFor="talk-full-name">Full name <b>*</b></label><input id="talk-full-name" name="fullName" autoComplete="name" required/></div>
+            <div className="g-contact-form__field g-request-form__field"><label htmlFor="talk-work-email">Work email <b>*</b></label><input id="talk-work-email" name="workEmail" type="email" autoComplete="email" required/></div>
+            <div className="g-contact-form__field g-request-form__field"><label htmlFor="talk-brand-name">Brand / company name <b>*</b></label><input id="talk-brand-name" name="brandName" autoComplete="organization" required/></div>
+            <div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label id="talk-channel-label" htmlFor="talk-channel">Which channel would you like to explore? <b>*</b></label><FormSelect id="talk-channel" name="channel" value={channel} onChange={value => { setChannel(value); setStatus('') }} placeholder="Select a channel" options={[{ value: 'dtc', label: 'DTC / Our own online store' }, { value: 'amazon', label: 'Amazon' }, { value: 'both', label: 'Both DTC and Amazon' }, { value: 'other', label: 'Other / Not sure yet' }]}/></div>
+            <fieldset className="g-talk-form__goals g-request-form__field--full"><legend>What would you most like to improve? <b>*</b></legend><p>Choose up to two.</p><div className="g-checkboxes">{improvementOptions.map(option => <label key={option}><input type="checkbox" name="improvements" value={option} checked={improvements.includes(option)} disabled={improvements.length >= 2 && !improvements.includes(option)} onChange={() => { toggleImprovement(option); setStatus('') }}/><span>{option}</span></label>)}</div></fieldset>
+          </div>
+        </section>
+        {showDtc && <section className="g-request-form__section"><h3>DTC</h3><div className="g-request-form__grid">
+          <div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label htmlFor="talk-dtc-url">Your online store URL <b>*</b></label><input id="talk-dtc-url" name="dtcUrl" type="url" placeholder="https://" required/></div>
+          <div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label htmlFor="talk-dtc-orders">Approximately how many DTC orders do you receive each month?</label><small>Exclude canceled or refunded orders; estimates are fine.</small><select id="talk-dtc-orders" name="dtcMonthlyOrders"><option value="">Choose an estimate</option><option>Fewer than 1,000</option><option>1,000–4,999</option><option>5,000–9,999</option><option>10,000 or more</option><option>Not sure / Prefer to discuss</option></select></div>
+          <div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label htmlFor="talk-dtc-aov">What is your net average order value in USD?</label><small>After discounts and refunds; exclude tax and shipping.</small><input id="talk-dtc-aov" name="dtcAov" type="number" min="0" step="0.01" placeholder="USD"/></div>
+        </div></section>}
+        {showAmazon && <section className="g-request-form__section"><h3>Amazon</h3><div className="g-request-form__grid">
+          <div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label htmlFor="talk-amazon-product">Link to one Amazon product you would like to focus on <b>*</b></label><small>Use one product URL or ASIN + marketplace. Keep the same ASIN below.</small><input id="talk-amazon-product" name="amazonProduct" required placeholder="Product URL or ASIN + marketplace"/></div>
+          <div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label htmlFor="talk-amazon-units">Approximately how many units does this ASIN sell each month?</label><small>For this ASIN only.</small><select id="talk-amazon-units" name="amazonMonthlyUnits"><option value="">Choose an estimate</option><option>Fewer than 1,000</option><option>1,000–4,999</option><option>5,000–9,999</option><option>10,000 or more</option><option>Not sure / Prefer to discuss</option></select></div>
+          <div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label htmlFor="talk-amazon-price">What is this ASIN’s usual selling price in USD?</label><small>Usual unit price, not list price. Include currency code if not USD.</small><input id="talk-amazon-price" name="amazonPrice" placeholder="USD"/></div>
+        </div></section>}
+        {showOther && <section className="g-request-form__section"><h3>Other channels</h3><div className="g-request-form__grid"><div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label htmlFor="talk-other-url">Brand website or store URL</label><input id="talk-other-url" name="otherUrl" type="url" placeholder="https://"/></div></div></section>}
+        <section className="g-request-form__section"><h3>Anything else?</h3><div className="g-request-form__grid"><div className="g-contact-form__field g-request-form__field g-request-form__field--full"><label htmlFor="talk-notes">Is there anything you’d like us to know before we meet?</label><textarea id="talk-notes" name="notes" rows="4"/></div></div></section>
+        {status && <p className="g-request-form__success" role="status">{status}</p>}
+        <button className="g-contact-form__submit" type="submit">Next</button>
       </form>
     </section>
   </div>
@@ -209,8 +311,10 @@ function ChatWidget() {
 
 export default function Givingli() {
   const [sampleRequestOpen, setSampleRequestOpen] = useState(false)
-  const jumpToTalk = () => document.getElementById('talk-to-us')?.scrollIntoView({ behavior: 'smooth' })
+  const [talkFormOpen, setTalkFormOpen] = useState(false)
+  const openTalkForm = () => setTalkFormOpen(true)
+  const closeTalkForm = () => setTalkFormOpen(false)
   const openSampleRequest = () => setSampleRequestOpen(true)
   const closeSampleRequest = () => setSampleRequestOpen(false)
-  return <div className="givingli-site givingli-home-site"><Header onTalk={jumpToTalk}/><main><Hero onTalk={jumpToTalk} onSampleRequest={openSampleRequest}/><CustomCard/><Solutions/><ScenarioSection/><RetentionPhilosophy/><FAQ/><ContactSection onTalk={jumpToTalk} onSampleRequest={openSampleRequest}/></main><ReorderMagnetForm open={sampleRequestOpen} onClose={closeSampleRequest}/><SiteFooter/><ChatWidget/></div>
+  return <div className="givingli-site givingli-home-site"><Header onTalk={openTalkForm}/><main><Hero onTalk={openTalkForm} onSampleRequest={openSampleRequest}/><CustomCard/><Solutions/><ScenarioSection/><RetentionPhilosophy/><FAQ/><ContactSection onTalk={openTalkForm} onSampleRequest={openSampleRequest}/></main><ReorderMagnetForm open={sampleRequestOpen} onClose={closeSampleRequest}/><TalkToHommioForm open={talkFormOpen} onClose={closeTalkForm}/><SiteFooter/><ChatWidget/></div>
 }

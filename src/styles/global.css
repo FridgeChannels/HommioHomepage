@@ -1,3 +1,19 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme inline {
+  --color-background: var(--color-canvas);
+  --color-foreground: var(--color-ink);
+  --color-muted-foreground: var(--color-muted);
+  --color-border: var(--color-line);
+  --color-ring: var(--color-blue);
+  --color-card: var(--color-paper);
+  --color-card-foreground: var(--color-ink);
+  --color-chart-1: var(--color-blue);
+  --color-chart-3: var(--color-sage);
+  --color-chart-4: var(--color-sage);
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--color-canvas); color: var(--color-ink); font-family: var(--font-sans); font-size: var(--text-md); -webkit-font-smoothing: antialiased; }

@@ -13,7 +13,7 @@
 .nav-count { margin-left: auto; border-radius: 20px; padding: 3px 7px; color: var(--color-blue-deep); background: var(--color-blue-light); font-size: max(var(--text-min), 10px); }
 .component-nav { min-height: 0; overflow: auto; padding: 0 5px 18px; scrollbar-width: thin; scrollbar-color: #d7cec2 transparent; }
 .component-nav > div { margin-bottom: 14px; }
-.component-nav p { margin: 0 0 4px; padding: 0 5px; color: #a2968d; font-size: max(var(--text-min), 9px); letter-spacing: .1em; text-transform: uppercase; }
+.component-nav p { margin: 0 0 4px; padding: 0 5px; color: #a2968d; font-size: max(var(--text-min), 9px); letter-spacing: .1em;  }
 .component-nav a { display: block; border-radius: 6px; padding: 5px; color: #756a61; font-size: max(var(--text-min), 11px); }
 .component-nav a:hover { color: var(--color-ink); background: #ece6dc; }
 .sidebar__bottom { margin-top: auto; padding: 14px 5px 0; border-top: 1px solid var(--color-line); color: #8c8178; font-size: max(var(--text-min), 10px); }

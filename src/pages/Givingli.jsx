@@ -81,15 +81,15 @@ function Hero({ onTalk }) {
 }
 
 function Solutions() {
-  return <section className="g-solutions" id="solutions"><div className="g-solutions__inner"><span>FIND YOUR FIT</span><h2>Built around how your customers buy.</h2><p>Help customers return to your DTC store or Amazon Brand Store with a Reorder Magnet designed around your brand and sales channels.</p><div className="g-solution-grid g-solution-grid--channels">{channelFit.map(item => <article className="g-solution-card" id={item.id} key={item.id}><div className="g-solution-card__icon">{item.icon}</div><h3>{item.title}</h3><p>{item.copy}</p><a href={item.href} target="_blank" rel="noreferrer">{item.cta} <ArrowRight size={18}/></a></article>)}</div></div></section>
+  return <section className="g-solutions" id="solutions"><div className="g-solutions__inner"><span>Find your fit</span><h2>Built around how your customers buy.</h2><p>Help customers return to your DTC store or Amazon Brand Store with a Reorder Magnet designed around your brand and sales channels.</p><div className="g-solution-grid g-solution-grid--channels">{channelFit.map(item => <article className="g-solution-card" id={item.id} key={item.id}><div className="g-solution-card__icon">{item.icon}</div><h3>{item.title}</h3><p>{item.copy}</p><a href={item.href} target="_blank" rel="noreferrer">{item.cta} <ArrowRight size={18}/></a></article>)}</div></div></section>
 }
 
 function GiftOptions() {
-  return <section className="g-gift-options" id="gift-options"><div className="g-section-intro"><span>USE HOMMIO YOUR WAY</span><h2>Support the moments that bring customers back.</h2><p>Build an in-home retention strategy around the ways your customers discover, use, and return to your products.</p></div><div className="g-gift-grid g-gift-grid--scenarios">{scenarios.map(([title, copy, icon], i) => <article className={`g-gift-card g-gift-card--${i + 1}`} key={title}><div className="g-scenario-icon" aria-hidden="true">{icon}</div><h3>{title}</h3><p>{copy}</p></article>)}</div><a className="g-text-link" href="https://app.notion.com/p/Pricing-ROI-Calculator-40e9166fd9fd800d832fe88c51cb3236?pvs=21" target="_blank" rel="noreferrer">Explore Pricing &amp; ROI Calculator <ArrowRight size={18}/></a></section>
+  return <section className="g-gift-options" id="gift-options"><div className="g-section-intro"><span>Use Hommio your way</span><h2>Support the moments that bring customers back.</h2><p>Build an in-home retention strategy around the ways your customers discover, use, and return to your products.</p></div><div className="g-gift-grid g-gift-grid--scenarios">{scenarios.map(([title, copy, icon], i) => <article className={`g-gift-card g-gift-card--${i + 1}`} key={title}><div className="g-scenario-icon" aria-hidden="true">{icon}</div><h3>{title}</h3><p>{copy}</p></article>)}</div><a className="g-text-link" href="https://app.notion.com/p/Pricing-ROI-Calculator-40e9166fd9fd800d832fe88c51cb3236?pvs=21" target="_blank" rel="noreferrer">Explore Pricing &amp; ROI Calculator <ArrowRight size={18}/></a></section>
 }
 
 function RetentionPhilosophy() {
-  return <section className="g-philosophy" id="retention-philosophy"><div className="g-philosophy__intro"><span>WHY RETENTION IS AT HOME</span><h2>Retention is at home.</h2><a href="https://app.notion.com/p/Retention-Philosophy-40e9166fd9fd802ea69cc75110f099ea?pvs=21" target="_blank" rel="noreferrer">Explore Our Retention Philosophy <ArrowRight size={18}/></a></div><div className="g-philosophy__principles"><article><span>01</span><h3>Brands Must Be Ambient.</h3></article><article><span>02</span><h3>Every Sale Strengthens the Channel.</h3></article><article><span>03</span><h3>Intelligence Begins Where the Product Is Consumed.</h3></article></div></section>
+  return <section className="g-philosophy" id="retention-philosophy"><div className="g-philosophy__intro"><span>Why retention is at home</span><h2>Retention is at home.</h2><a href="https://app.notion.com/p/Retention-Philosophy-40e9166fd9fd802ea69cc75110f099ea?pvs=21" target="_blank" rel="noreferrer">Explore Our Retention Philosophy <ArrowRight size={18}/></a></div><div className="g-philosophy__principles"><article><span>01</span><h3>Brands Must Be Ambient.</h3></article><article><span>02</span><h3>Every Sale Strengthens the Channel.</h3></article><article><span>03</span><h3>Intelligence Begins Where the Product Is Consumed.</h3></article></div></section>
 }
 
 function FAQ() {
@@ -97,7 +97,7 @@ function FAQ() {
 }
 
 function CustomCard() {
-  return <section className="g-custom-card"><div className="g-custom-card__copy"><span>MADE FOR THE HOME</span><h2>A branded Reorder Magnet gives customers a simple way back to your products when they need them.</h2><a href="#talk-to-us">Request a Reorder Magnet</a></div><img src={img('/images/business-gifting/gift-options/cant-thank-you-enough-pro-card.png')} alt="A branded card showing an example of a Reorder Magnet design"/></section>
+  return <section className="g-custom-card"><div className="g-custom-card__copy"><span>Made for the home</span><h2>A branded Reorder Magnet gives customers a simple way back to your products when they need them.</h2><a href="#talk-to-us">Request a Reorder Magnet</a></div><img src={img('/images/business-gifting/gift-options/cant-thank-you-enough-pro-card.png')} alt="A branded card showing an example of a Reorder Magnet design"/></section>
 }
 
 function HowItWorks({ onTalk }) {
@@ -107,19 +107,19 @@ function HowItWorks({ onTalk }) {
 
 function ContactForm() {
   const [sent, setSent] = useState(false)
-  return <section className="g-contact" id="talk-to-us"><div className="g-contact__intro"><span>TALK TO HOMMIO</span><h2>Bring Hommio to your customers’ homes.</h2><p>Let’s build a deployment plan, Reorder Magnet, and personalized experience around your brand.</p><ul><li>DEPLOYMENT PLANNING FOR YOUR BRAND</li><li>A REORDER MAGNET DESIGNED FOR YOUR CUSTOMERS</li><li>A PERSONALIZED EXPERIENCE WHEN THEY TAP</li></ul></div><form className="g-contact-form" onSubmit={e => { e.preventDefault(); setSent(true) }}>
-    <blockquote><img src="/assets/hommio-logo.png" alt="Hommio"/><p>Retention is at home.</p><cite>LET’S BUILD YOUR PLAN</cite></blockquote>
-    <div className="g-contact-form__field"><label>(01) WORK EMAIL <b>*</b></label><input type="email" placeholder="you@brand.com" required/></div>
-    <div className="g-contact-form__field"><label>(02) FULL NAME <b>*</b></label><input placeholder="Your name" required/></div>
-    <div className="g-contact-form__field"><label>(03) BRAND / COMPANY NAME <b>*</b></label><input placeholder="Your brand" required/></div>
-    <div className="g-contact-form__field"><label>(04) YOUR ROLE <b>*</b></label><select required defaultValue=""><option value="" disabled>Select your role</option>{['Founder / Owner','Marketing','Ecommerce','Retention / CRM','Brand','Other'].map(x => <option key={x}>{x}</option>)}</select></div>
-    <div className="g-contact-form__field"><label>(05) PRIMARY SALES CHANNEL <b>*</b></label><select required defaultValue=""><option value="" disabled>Select a channel</option>{['DTC store','Amazon Brand Store','Both','Other'].map(x => <option key={x}>{x}</option>)}</select></div>
-    <div className="g-contact-form__optional"><b>OPTIONAL · TELL US MORE</b><p>Share a few details about your products and retention goals so we can shape a useful first conversation.</p></div>
-    <div className="g-contact-form__field"><label>(06) PRODUCT CATEGORY</label><input placeholder="For example, food, beverage, or personal care"/></div>
-    <fieldset className="g-contact-form__field"><legend>(07) WHAT WOULD YOU LIKE TO EXPLORE?</legend><p>Select all that apply</p><div className="g-checkboxes">{['In-home retention','Reorder Magnet design','DTC customer journey','Amazon customer journey','Sampling or launch campaign','Other'].map(x => <label key={x}><input type="checkbox"/> {x}</label>)}</div></fieldset>
-    <div className="g-contact-form__field"><label>(08) ESTIMATED ANNUAL ORDER VOLUME</label><select defaultValue=""><option value="" disabled>Select a range</option>{['Under 5,000','5,000–25,000','25,000–100,000','100,000+','Not sure yet'].map(x => <option key={x}>{x}</option>)}</select></div>
-    <div className="g-contact-form__field"><label>(09) WHEN ARE YOU LOOKING TO START?</label><select defaultValue=""><option value="" disabled>Select a timeline</option>{['As soon as possible','1–3 months','3–6 months','Just exploring'].map(x => <option key={x}>{x}</option>)}</select></div>
-    <div className="g-contact-form__field"><label>(10) ANYTHING ELSE WE SHOULD KNOW?</label><textarea rows="3"/></div>
+  return <section className="g-contact" id="talk-to-us"><div className="g-contact__intro"><span>Talk to Hommio</span><h2>Bring Hommio to your customers’ homes.</h2><p>Let’s build a deployment plan, Reorder Magnet, and personalized experience around your brand.</p><ul><li>Deployment planning for your brand</li><li>A Reorder Magnet designed for your customers</li><li>A personalized experience when they tap</li></ul></div><form className="g-contact-form" onSubmit={e => { e.preventDefault(); setSent(true) }}>
+    <blockquote><img src="/assets/hommio-logo.png" alt="Hommio"/><p>Retention is at home.</p><cite>Let’s build your plan</cite></blockquote>
+    <div className="g-contact-form__field"><label>(01) Work email <b>*</b></label><input type="email" placeholder="you@brand.com" required/></div>
+    <div className="g-contact-form__field"><label>(02) Full name <b>*</b></label><input placeholder="Your name" required/></div>
+    <div className="g-contact-form__field"><label>(03) Brand / company name <b>*</b></label><input placeholder="Your brand" required/></div>
+    <div className="g-contact-form__field"><label>(04) Your role <b>*</b></label><select required defaultValue=""><option value="" disabled>Select your role</option>{['Founder / Owner','Marketing','Ecommerce','Retention / CRM','Brand','Other'].map(x => <option key={x}>{x}</option>)}</select></div>
+    <div className="g-contact-form__field"><label>(05) Primary sales channel <b>*</b></label><select required defaultValue=""><option value="" disabled>Select a channel</option>{['DTC store','Amazon Brand Store','Both','Other'].map(x => <option key={x}>{x}</option>)}</select></div>
+    <div className="g-contact-form__optional"><b>Optional · Tell us more</b><p>Share a few details about your products and retention goals so we can shape a useful first conversation.</p></div>
+    <div className="g-contact-form__field"><label>(06) Product category</label><input placeholder="For example, food, beverage, or personal care"/></div>
+    <fieldset className="g-contact-form__field"><legend>(07) What would you like to explore?</legend><p>Select all that apply</p><div className="g-checkboxes">{['In-home retention','Reorder Magnet design','DTC customer journey','Amazon customer journey','Sampling or launch campaign','Other'].map(x => <label key={x}><input type="checkbox"/> {x}</label>)}</div></fieldset>
+    <div className="g-contact-form__field"><label>(08) Estimated annual order volume</label><select defaultValue=""><option value="" disabled>Select a range</option>{['Under 5,000','5,000–25,000','25,000–100,000','100,000+','Not sure yet'].map(x => <option key={x}>{x}</option>)}</select></div>
+    <div className="g-contact-form__field"><label>(09) When are you looking to start?</label><select defaultValue=""><option value="" disabled>Select a timeline</option>{['As soon as possible','1–3 months','3–6 months','Just exploring'].map(x => <option key={x}>{x}</option>)}</select></div>
+    <div className="g-contact-form__field"><label>(10) Anything else we should know?</label><textarea rows="3"/></div>
     <button className="g-contact-form__submit" type="submit">{sent ? "We'll reply within one business day." : "Talk to Hommio"}</button>
   </form></section>
 }

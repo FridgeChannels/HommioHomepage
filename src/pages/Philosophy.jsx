@@ -1,6 +1,6 @@
 import SiteFooter from '../components/SiteFooter.jsx'
 import { useState } from 'react'
-import { ArrowDown, ChevronDown, Menu, X } from 'lucide-react'
+import { ArrowDown, Menu, X } from 'lucide-react'
 import './givingli-home.css'
 import './philosophy.css'
 
@@ -45,9 +45,9 @@ function Header() {
     <button className="philosophy-menu-toggle" aria-label={menuOpen ? 'Close menu' : 'Open menu'} onClick={() => setMenuOpen(open => !open)}>{menuOpen ? <X size={20}/> : <Menu size={20}/>}</button>
     <nav className={`g-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
       <a href="/" onClick={closeMenu}>Hommio</a>
-      <div className="g-nav__item"><a href="/#solutions" onClick={closeMenu}>Solutions <ChevronDown size={13}/></a></div>
-      <a href="https://app.notion.com/p/Pricing-ROI-Calculator-40e9166fd9fd800d832fe88c51cb3236" target="_blank" rel="noreferrer" onClick={closeMenu}>Pricing &amp; ROI Calculator</a>
-      <a href="/philosophy" aria-current="page" onClick={closeMenu}>Retention Philosophy</a>
+      <a href="/dtcbrands" onClick={closeMenu}>For DTC Brands</a>
+      <a href="/#amazon" onClick={closeMenu}>For Amazon Brands</a>
+      <a href="/philosophy" aria-current="page" onClick={closeMenu}>Our Philosophy</a>
     </nav>
     <a className="g-header-button g-header-button--blue philosophy-header-cta" href="/#talk-to-us">Talk to Hommio</a>
   </div></header>
@@ -58,7 +58,7 @@ export default function Philosophy() {
     <Header/>
     <main>
       <section className="philosophy-hero">
-        <span className="philosophy-kicker">THE HOMMIO POINT OF VIEW</span>
+        <span className="philosophy-kicker">The Hommio point of view</span>
         <h1>Retention<br/><em>is at home.</em></h1>
         <p>Lasting customer relationships are built in the moments and routines that make up everyday life.</p>
         <a className="philosophy-scroll" href="#principles">Explore the principles <ArrowDown size={15}/></a>
@@ -67,7 +67,7 @@ export default function Philosophy() {
         {principles.map(item => <article className="philosophy-principle" key={item.number}>
           <div className="philosophy-principle__marker"><span>{item.number}</span><i/></div>
           <div className="philosophy-principle__content">
-            <span className="philosophy-principle__eyebrow">PRINCIPLE</span>
+            <span className="philosophy-principle__eyebrow">Principle</span>
             <h2>{item.title}</h2>
             <h3>{item.subtitle}</h3>
             {item.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
@@ -77,7 +77,7 @@ export default function Philosophy() {
         </article>)}
       </section>
       <section className="philosophy-contact" id="contact">
-        <span>MADE FOR EVERYDAY LIFE</span>
+        <span>Made for everyday life</span>
         <h2>Make your brand<br/>part of the home.</h2>
         <a href="/#talk-to-us">Talk to Hommio</a>
       </section>

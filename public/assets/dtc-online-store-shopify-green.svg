@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <g fill="none" stroke="#171717" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Browser window -->
+    <rect x="54" y="72" width="404" height="368" rx="30"/>
+    <path d="M54 151 H458"/>
+    <circle cx="94" cy="111" r="10" fill="#FF5F57" stroke="none"/>
+    <circle cx="126" cy="111" r="10" fill="#FEBC2E" stroke="none"/>
+    <circle cx="158" cy="111" r="10" fill="#28C840" stroke="none"/>
+    <!-- Online shopping bag inside the website -->
+    <path d="M184 239 H328 L345 381 H167 Z" fill="#95BF47"/>
+    <path d="M216 242 V218 C216 194 232 178 256 178 C280 178 296 194 296 218 V242"/>
+  </g>
+</svg>

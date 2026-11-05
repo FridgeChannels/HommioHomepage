@@ -51,7 +51,7 @@ function Header() {
   const closeMenu = () => setMenuOpen(false)
 
   return <header className="g-header philosophy-header"><div className="g-header__inner">
-    <a className="g-logo" href="/" aria-label="Hommio home"><span className="g-logo__crop"><img src="/assets/hommio-logo.png" alt="Hommio" /></span></a>
+    <a className="g-logo" href="/" aria-label="Hommio home"><span className="g-logo__crop"><img src="/assets/hommio-logo-transparent.png" alt="Hommio" /></span></a>
     <button className="philosophy-menu-toggle" aria-label={menuOpen ? 'Close menu' : 'Open menu'} onClick={() => setMenuOpen(open => !open)}>{menuOpen ? <X size={20}/> : <Menu size={20}/>}</button>
     <nav className={`g-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
       <a href="/" onClick={closeMenu}>Hommio</a>

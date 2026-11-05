@@ -1,0 +1,375 @@
+/* Mobile layout refinements shared by the live homepage and brand pages. */
+.givingli-site {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.givingli-site :is(img, video, iframe, svg) {
+  max-width: 100%;
+}
+
+@media (max-width: 760px) {
+  html { scroll-padding-top: 76px; }
+
+  .givingli-site :is(h1, h2, h3, h4, p, li, summary, label, button, a) {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .g-header { overflow: visible; }
+  .g-header__inner {
+    position: relative;
+    width: calc(100% - 24px);
+    gap: 8px;
+  }
+  .g-logo,
+  .g-logo__crop {
+    width: clamp(104px, 32vw, 126px);
+  }
+  .g-header__actions { gap: 8px; }
+  .g-header-button {
+    min-height: 42px;
+    height: 42px;
+    padding-inline: 12px;
+    font-size: 12px;
+  }
+  .g-header__menu-toggle {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    flex: none;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgb(33 12 2 / 12%);
+    border-radius: 50%;
+    color: #382419;
+    background: #fff;
+    cursor: pointer;
+  }
+  .givingli-site .g-nav.is-open {
+    position: absolute;
+    z-index: 31;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: 9px 12px 13px;
+    border: 1px solid rgb(33 12 2 / 8%);
+    border-radius: 0 0 16px 16px;
+    background: #fff;
+    box-shadow: 0 16px 28px rgb(33 12 2 / 10%);
+  }
+  .givingli-site .g-nav.is-open > a {
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 9px;
+    color: #49372d;
+    font-size: 15px;
+    white-space: normal;
+  }
+  .givingli-site .g-nav.is-open > a:hover,
+  .givingli-site .g-nav.is-open > a[aria-current='page'] {
+    background: #f2f2eb;
+  }
+
+  .givingli-site :is(.g-hero__actions > button, .g-hero__actions > a, .g-header-button, .g-contact-form__submit) {
+    min-height: 46px;
+  }
+  .givingli-site .g-hero__actions {
+    animation: none;
+    opacity: 1;
+  }
+
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 38px 0 20px;
+  }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero__title {
+    width: 100%;
+    padding: 0 18px;
+  }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero__title h1 {
+    font-size: clamp(30px, 9vw, 39px);
+    line-height: 1.08;
+    white-space: normal;
+    text-wrap: balance;
+  }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero__title h1 em {
+    font-size: 1.12em;
+  }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero__title > h2 {
+    max-width: 360px;
+    width: 100%;
+    margin: 27px auto 12px;
+    font-size: clamp(21px, 6.1vw, 25px);
+    line-height: 1.22;
+    text-wrap: balance;
+  }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero__title > p {
+    max-width: 430px;
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero__title .g-hero__actions {
+    width: min(100%, 420px);
+    margin-top: 22px;
+  }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero__objects {
+    position: relative;
+    inset: auto;
+    order: 1;
+    width: 100%;
+    height: auto;
+    transform: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 16px;
+    padding: 8px 12px 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: 12px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    pointer-events: auto;
+    opacity: 1;
+  }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero__objects::-webkit-scrollbar { display: none; }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero__glow {
+    display: none;
+  }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero-gift-stack {
+    position: relative;
+    inset: auto;
+    flex: 0 0 calc(100% - 28px);
+    width: calc(100% - 28px);
+    height: auto;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: none;
+    overflow: visible;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero-gift-stack .g-hero-float {
+    position: static;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: clamp(230px, 72vw, 326px);
+    border-radius: 0;
+    animation: none;
+    filter: none;
+    object-fit: contain;
+  }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero-gift-stack--landscape .g-hero-float {
+    height: min(210px, calc((100vw - 68px) / 1.84));
+    max-height: none;
+  }
+
+  .dtcbrands-page .g-hero {
+    min-height: 0;
+    padding: 72px 18px 56px;
+  }
+  .dtcbrands-page .g-hero__title { padding: 0; }
+  .dtcbrands-page .g-hero__title h1 {
+    gap: 9px;
+    padding-inline: 0;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  .dtcbrands-page .g-hero__title h1 .dtcbrands-hero-lead {
+    font-size: clamp(25px, 7.6vw, 35px);
+    line-height: 1.15;
+  }
+  .dtcbrands-page .g-hero__title h1 .dtcbrands-hero-term {
+    min-height: 2.35em;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: clamp(22px, 6.4vw, 29px);
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  .dtcbrands-page .g-hero__actions {
+    width: min(100%, 360px);
+    margin-top: 20px;
+  }
+  .dtcbrands-page .dtc-goal-lamp-rail,
+  .amazonbrands-advantage .amazonbrands-goal-lamps { overflow: visible; }
+
+  .amazonbrands-page .amazonbrands-hero {
+    min-height: 0;
+    padding: 74px 18px 62px;
+  }
+  .amazonbrands-page .amazonbrands-hero h1 {
+    max-width: 600px;
+    margin: 18px auto 15px;
+    font-size: clamp(35px, 10.5vw, 48px);
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+  .amazonbrands-page .amazonbrands-hero .g-hero__title > p {
+    max-width: 560px;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .amazonbrands-page .amazonbrands-hero .g-hero__actions {
+    width: min(100%, 360px);
+    margin-top: 22px;
+  }
+
+  .givingli-site :is(.dtc-guide__inner, .dtc-operations__inner, .dtc-economics__inner, .amazonbrands-section-inner) {
+    width: calc(100% - 32px);
+  }
+  .givingli-site :is(.dtc-guide__header h2, .dtc-operations__header h2) {
+    font-size: clamp(31px, 8.8vw, 42px);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  .dtc-economics__copy h2,
+  .amazonbrands-economics .dtc-economics__copy h2 {
+    font-size: clamp(32px, 9.4vw, 40px);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  .dtc-economics__copy > p,
+  .amazonbrands-economics .dtc-economics__copy > p {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .dtc-dashboard-layout,
+  .amazonbrands-economics .dtc-dashboard-layout {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .dtc-hph-dashboard-embed { min-width: 0; }
+  .dtc-dashboard-hint { max-width: 100%; }
+  .dtc-dashboard-hint__text { font-size: 18px !important; }
+
+  .amazonbrands-steps { grid-template-columns: 1fr; }
+  .amazonbrands-steps li { min-width: 0; padding: 22px 4px; }
+  .amazonbrands-section-heading { margin-bottom: 30px; text-align: left; }
+  .amazonbrands-section-heading h2 { font-size: clamp(31px, 8.8vw, 42px); line-height: 1.08; }
+  .amazonbrands-goal { min-width: 0; padding: 22px 18px; }
+  .amazonbrands-goal h3 { font-size: clamp(22px, 6vw, 27px); }
+  .amazonbrands-goal h4 { font-size: 15px; }
+  .amazonbrands-goal :is(p, li) { font-size: 14px; line-height: 1.65; }
+  .amazonbrands-journey { padding: 17px 0; font-size: 14px; line-height: 1.8; overflow-wrap: anywhere; }
+  .amazonbrands-journey i { padding-inline: 3px; }
+
+  .givingli-site .g-faq { padding-inline: 18px; }
+  .givingli-site .g-faq__list summary { gap: 12px; line-height: 1.4; }
+  .givingli-site .g-faq__list summary > span { flex: none; }
+  .givingli-site .g-faq__list details p { padding-right: 0; }
+
+  .amazonbrands-contact .g-contact__intro h2,
+  .dtc-book-demo .g-contact__intro h2 { font-size: clamp(34px, 10vw, 46px); line-height: 1.07; }
+  .amazonbrands-contact .g-contact__intro > p { font-size: 15px; line-height: 1.65; }
+
+  .g-request-modal {
+    place-items: center;
+    padding: max(8px, env(safe-area-inset-top)) 8px max(8px, env(safe-area-inset-bottom));
+  }
+  .g-request-dialog {
+    width: 100%;
+    max-height: calc(100vh - 16px);
+    max-height: calc(100dvh - 16px);
+    border-radius: 14px;
+    overscroll-behavior: contain;
+  }
+  .givingli-site .g-request-form,
+  .givingli-home-site .g-request-form {
+    width: 100%;
+    min-width: 0;
+    padding: 18px 16px 22px;
+  }
+  .givingli-site .g-request-form__grid { grid-template-columns: minmax(0, 1fr); }
+  .givingli-site .g-request-form__field--full { grid-column: 1; }
+  .givingli-site .g-request-form :is(input, select, textarea, .g-form-select__trigger) { min-width: 0; max-width: 100%; }
+  .givingli-site .g-request-form :is(label, legend, summary, .g-talk-form__goals label) {
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+  .givingli-site .g-request-form blockquote { padding-right: 42px; }
+  .givingli-site .g-talk-form__header { padding-right: 38px; text-align: left; }
+}
+
+@media (max-width: 360px) {
+  .g-header__inner { width: calc(100% - 20px); }
+  .g-logo,
+  .g-logo__crop { width: 100px; }
+  .g-header__actions { gap: 6px; }
+  .g-header-button { padding-inline: 9px; font-size: 11px; }
+  .g-header__menu-toggle { width: 40px; height: 40px; }
+  .givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-hero { padding-top: 32px; }
+  .amazonbrands-page .amazonbrands-hero { padding-inline: 15px; }
+  .amazonbrands-page .amazonbrands-hero h1 { font-size: 35px; }
+  .givingli-site .g-faq { padding-inline: 16px; }
+  .g-request-modal { padding-inline: 6px; }
+  .givingli-site .g-request-form,
+  .givingli-home-site .g-request-form { padding-inline: 13px; }
+}
+
+/* Keep mobile copy comfortably readable and align the smallest text with the header CTA. */
+@media (max-width: 760px) {
+  .givingli-site {
+    --mobile-copy-min: 16px;
+  }
+
+  .givingli-site :is(
+    p, li, summary, label, small, cite, legend, dt, dd, th, td, figcaption,
+    h4, h5, button, a, input, select, textarea,
+    .amazonbrands-step-number, .amazonbrands-journey,
+    .g-feature-card__top, .g-pagination,
+    .g-solutions__inner > span, .g-philosophy__intro > span, .g-faq__intro > span,
+    .g-contact__intro > span
+  ) {
+    font-size: max(var(--mobile-copy-min), 1em) !important;
+  }
+
+  .givingli-site :is(p, li, small, cite, figcaption) {
+    line-height: 1.55;
+  }
+
+  .givingli-site .g-header-button,
+  .givingli-site .g-hero__actions :is(button, a) {
+    font-size: var(--mobile-copy-min) !important;
+  }
+
+  .givingli-site .g-nav.is-open > a {
+    font-size: var(--mobile-copy-min) !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .g-header__inner { gap: 6px; }
+  .g-logo,
+  .g-logo__crop { width: clamp(80px, 28vw, 100px); }
+  .g-header__actions { gap: 5px; }
+  .g-header-button { padding-inline: 9px; font-size: 16px !important; }
+}
+
+@media (max-width: 900px) {
+  .givingli-site .dtc-dashboard-layout {
+    position: relative;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;
+  }
+  .givingli-site .dtc-hph-dashboard-embed { grid-row: 1; }
+  .givingli-site .dtc-dashboard-hint { display: none; }
+}

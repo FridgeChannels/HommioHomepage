@@ -113,6 +113,8 @@
 .g-contact-form__field { display: grid; gap: 4px; padding: 16px 0 10px; border-bottom: 1px solid #cfc5b9; }.g-contact-form__field label,.g-contact-form__field legend { color: #75685d; font-size: max(var(--text-min), 11px); letter-spacing: .16em; }.g-contact-form__field label b { color: #be382e; }.g-contact-form__field input,.g-contact-form__field select,.g-contact-form__field textarea { width: 100%; min-height: 34px; padding: 4px 0; border: 0; outline: 0; color: #493b31; background: transparent; font-size: max(var(--text-min), 15px); }.g-contact-form__field input::placeholder { color: #9c9085; }.g-contact-form__field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2375685d' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right center; }.g-contact-form__field textarea { resize: vertical; }.g-contact-form__optional { margin-top: 25px; padding: 20px; color: #f6f1e8; background: var(--gl-ink); }.g-contact-form__optional b { font-size: max(var(--text-min), 10px); letter-spacing: .18em; }.g-contact-form__optional p { margin: 9px 0 0; color: #d0c1b5; font-size: max(var(--text-min), 12px); line-height: 1.6; }.g-contact-form fieldset { margin: 0; padding-inline: 0; border: 0; }.g-contact-form fieldset legend { padding: 0; }.g-contact-form fieldset > p { margin: 7px 0 3px; color: #96897e; font-size: max(var(--text-min), 12px); }.g-checkboxes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 0 3px; }.g-checkboxes label { display: flex; align-items: center; gap: 7px; color: #67594e; font-size: max(var(--text-min), 12px); letter-spacing: 0; }.g-checkboxes input { accent-color: var(--gl-blue); }.g-contact-form__submit { width: 100%; min-height: 57px; display: flex; align-items: center; justify-content: space-between; margin-top: 24px; padding: 0 17px; border: 0; color: #fff; background: var(--gl-ink); font-size: max(var(--text-min), 19px); cursor: pointer; }.g-contact-form__submit:hover { background: #351809; }
 
 .g-chat { position: fixed; z-index: 50; right: 28px; bottom: 26px; }.g-chat__toggle { width: 60px; height: 60px; display: grid; place-items: center; padding: 13px; border: 0; border-radius: 50%; color: #fff; background: var(--gl-blue); box-shadow: 0 8px 24px #210c0233; cursor: pointer; }.g-chat__toggle img { width: 33px; height: 33px; filter: brightness(0) invert(1); }.g-chat__panel { position: absolute; right: 0; bottom: 75px; width: 395px; padding: 22px 21px 0; border-radius: 9px; color: #332116; background: #fff; box-shadow: 0 16px 50px #210c0230; }.g-chat__close { position: absolute; top: 12px; right: 12px; width: 29px; height: 29px; display: grid; place-items: center; border: 0; border-radius: 50%; background: #f5f2ed; cursor: pointer; }.g-chat__brand { display: flex; align-items: center; gap: 13px; margin-bottom: 20px; }.g-chat__brand img { width: 45px; height: 45px; padding: 11px; border-radius: 50%; background: var(--gl-blue); filter: brightness(0) invert(1); }.g-chat__brand b { font-size: max(var(--text-min), 15px); font-weight: 600; }.g-chat__panel > p { margin: 0 0 15px; font-size: max(var(--text-min), 15px); }.g-chat__panel > a { min-height: 50px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; border-radius: 99px; color: #fff; background: var(--gl-blue); font-size: max(var(--text-min), 14px); }.g-chat__panel > small { display: block; margin: 18px -21px 0; padding: 15px 10px; border-top: 1px solid #eee; color: #a1968c; text-align: center; font-size: max(var(--text-min), 10px); }.g-chat__panel u { text-underline-offset: 2px; }
+.dtcbrands-page .g-chat,
+.amazonbrands-page .g-chat { display: none !important; }
 
 /* Keep the centered hero copy clear while gift assets frame it at the edges. */
 .hero-float--card { left: calc(50% - 650px); width: 190px; }
@@ -350,6 +352,26 @@
   #scenarios .g-step-card { min-height: 0; }
 }
 
+/* Keep the homepage philosophy points aligned as one centered group. */
+.givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-philosophy__principles {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-philosophy__principles article,
+.givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-philosophy__principles article:last-child {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  justify-content: initial;
+  justify-items: stretch;
+  align-items: baseline;
+  gap: 18px;
+  text-align: left;
+}
+.givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) .g-philosophy__principles article h3 {
+  min-width: 0;
+}
+
 .g-request-modal { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: clamp(10px, 3vw, 32px); background: #1d100dcc; backdrop-filter: blur(5px); }
 .g-request-dialog { position: relative; width: min(820px, 100%); max-height: min(92vh, 1040px); overflow: auto; background: #f5f0e8; box-shadow: 0 24px 70px #0005; }
 .g-request-dialog__close { position: sticky; z-index: 2; top: 12px; display: grid; place-items: center; width: 38px; height: 38px; margin: 12px 12px -50px auto; border: 1px solid #cfc5b9; border-radius: 50%; color: #493b31; background: #f5f0e8; cursor: pointer; }
@@ -583,6 +605,63 @@
 .givingli-home-site .g-solution-grid--channels .g-solution-card h3,
 .givingli-home-site .g-solution-grid--channels .g-solution-card p { width: 100%; text-align: center; }
 .givingli-home-site .g-solution-grid--channels .g-solution-card a { justify-content: center; text-align: center; }
+
+/* Keep the live homepage and brand landing pages on the white and olive palette. */
+.givingli-home-site {
+  --gl-cream: #fff;
+  --gl-paper: #fff;
+  --gl-blue: #727654;
+  --gl-blue-light: #edf0e5;
+  --gl-blue-dark: #5d6244;
+  --focus-ring: 0 0 0 3px rgb(114 118 84 / 26%);
+  background: #fff;
+}
+.givingli-home-site .g-header { background: rgb(255 255 255 / 94%); }
+.givingli-home-site .g-brand-switch,
+.givingli-home-site .g-pro-pill { background-color: #edf0e5; }
+.givingli-home-site .g-pro-pill,
+.givingli-home-site .g-brand-switch a span { color: #343824; }
+.givingli-home-site .g-header-button--blue:hover,
+.givingli-home-site .g-philosophy__link:hover { background: #5d6244; }
+.givingli-home-site .g-hero,
+.givingli-home-site .g-how,
+.givingli-home-site .g-step-card,
+.givingli-home-site .g-step-card--1,
+.givingli-home-site .g-step-card--2,
+.givingli-home-site .g-step-card--3,
+.givingli-home-site .g-step-card--4,
+.givingli-home-site .g-testimonials,
+.givingli-home-site .g-faq { background: #fff; background-image: none; }
+.givingli-home-site .g-hero__glow { background: radial-gradient(ellipse, rgb(130 132 99 / .16), transparent 70%); }
+.givingli-home-site .g-solutions {
+  background-color: #727654;
+  background-image: radial-gradient(#ffffff12 1px, transparent 1px), linear-gradient(135deg, #828463, #666b4d);
+}
+.givingli-home-site .automation-demo > div:nth-of-type(3) > span,
+.givingli-home-site .brand-cards i:nth-child(2) { background: #edf0e5; }
+.givingli-home-site .g-hommio-step-art--3 { background: linear-gradient(145deg, #edf0e5, #d9decc); }
+.givingli-home-site .g-philosophy__intro a,
+.givingli-home-site .g-philosophy__principles article > span { color: #cbd2b7; }
+.givingli-home-site .g-faq__list summary span,
+.givingli-home-site .g-request-form__delivery-phone summary::after,
+.givingli-home-site .g-talk-form__privacy a { color: #727654; }
+.givingli-home-site .g-form-select__menu button.is-selected { background: #727654; }
+.givingli-home-site .g-form-select__menu button.is-selected:hover,
+.givingli-home-site .g-form-select__menu button.is-selected:focus-visible { background: #5d6244; }
+.givingli-home-site .g-form-select__trigger:focus-visible,
+.givingli-home-site .g-form-select__menu button:focus-visible { outline-color: #727654; }
+.givingli-home-site .g-contact-form,
+.givingli-home-site .g-request-dialog,
+.givingli-home-site .g-request-dialog__close { background-color: #fff; }
+.givingli-home-site .g-contact-form { background-image: none; }
+.givingli-home-site .g-request-form .g-contact-form__field > textarea:focus { border-color: #727654 !important; }
+.givingli-home-site .site-footer__contact svg { color: #edf0e5; }
+.givingli-home-site .site-footer a:focus-visible,
+.givingli-home-site .site-footer button:focus-visible { outline-color: #edf0e5; }
+.givingli-home-site:not(.dtcbrands-page):not(.amazonbrands-page) #talk-to-us .g-hero__actions > button {
+  box-sizing: border-box;
+  border: 1px solid #fff;
+}
 
 /* Give the homepage introduction a consistent vertical rhythm. */
 .givingli-home-site:not(.dtcbrands-page) .g-hero__title > h2 { margin-top: 52px; margin-bottom: 22px; line-height: 1.3; }

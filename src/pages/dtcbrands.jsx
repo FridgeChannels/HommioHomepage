@@ -1,6 +1,6 @@
 import SiteFooter from '../components/SiteFooter.jsx'
 import { useEffect, useRef, useState } from 'react'
-import { X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { sampleFieldNames, submitLeadAndBook } from '../lib/submitLead.js'
 import PendantLampRail, { makeGoalLamps } from '../../components/ui/pendant-lamp-rail.tsx'
 import { dtcGoalSections, economicsCopy, dtcOperationSteps, pdfFaqs } from './dtcbrands-content.js'
@@ -24,19 +24,22 @@ const retentionGoals = [
 const dtcGoalLamps = makeGoalLamps(dtcGoalSections)
 
 function GLogo({ footer = false }) {
-  return <a className={`g-logo ${footer ? 'g-logo--footer' : ''}`} href="/" aria-label="Hommio home"><span className="g-logo__crop"><img src="/assets/hommio-logo.png" alt="Hommio" /></span></a>
+  return <a className={`g-logo ${footer ? 'g-logo--footer' : ''}`} href="/" aria-label="Hommio home"><span className="g-logo__crop"><img src="/assets/hommio-logo-transparent.png" alt="Hommio" /></span></a>
 }
 
 function Header({ onTalk }) {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const closeMenu = () => setMenuOpen(false)
+
   return <header className="g-header"><div className="g-header__inner">
     <div className="g-header__brand"><GLogo/></div>
-    <nav className="g-nav" aria-label="Main navigation">
-      <a href="/">Hommio</a>
-      <a href="/dtcbrands">For DTC Brands</a>
-      <a href="/amazonbrands">For Amazon Brands</a>
-      <a href="/philosophy">Our Philosophy</a>
+    <nav className={`g-nav${menuOpen ? ' is-open' : ''}`} id="main-navigation" aria-label="Main navigation">
+      <a href="/" onClick={closeMenu}>Hommio</a>
+      <a href="/dtcbrands" onClick={closeMenu}>For DTC Brands</a>
+      <a href="/amazonbrands" onClick={closeMenu}>For Amazon Brands</a>
+      <a href="/philosophy" onClick={closeMenu}>Our Philosophy</a>
     </nav>
-    <div className="g-header__actions"><button className="g-header-button g-header-button--blue" onClick={onTalk}>Talk to Hommio</button></div>
+    <div className="g-header__actions"><button className="g-header-button g-header-button--blue" onClick={() => { closeMenu(); onTalk() }}>Talk to Hommio</button><button className="g-header__menu-toggle" type="button" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(value => !value)}>{menuOpen ? <X size={20}/> : <Menu size={20}/>}</button></div>
   </div></header>
 }
 
@@ -154,7 +157,7 @@ function FAQ() {
 }
 
 function ContactSection({ onTalk, onSampleRequest }) {
-  return <section className="g-contact dtc-book-demo" id="talk-to-us"><div className="g-contact__intro"><span>book a demo</span><h2>Select a goal and talk to Hommio</h2><div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><a href="#request-sample" onClick={event => { event.preventDefault(); onSampleRequest() }}>Request a Sample</a></div></div></section>
+  return <section className="g-contact dtc-book-demo" id="talk-to-us"><div className="g-contact__intro"><h2>Select a goal and talk to Hommio</h2><div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><a href="#request-sample" onClick={event => { event.preventDefault(); onSampleRequest() }}>Request a Sample</a></div></div></section>
 }
 
 function ReorderMagnetForm({ open, onClose }) {
@@ -360,11 +363,6 @@ function TalkToHommioForm({ open, onClose }) {
   </div>
 }
 
-function ChatWidget() {
-  const [open, setOpen] = useState(false)
-  return <div className="g-chat"><button className="g-chat__toggle" onClick={() => setOpen(v => !v)} aria-label={open ? 'Close chat' : 'Open chat'}>{open ? <X size={22}/> : <img src="/assets/hommio-h-mark.png" alt="" aria-hidden="true"/>}</button>{open && <div className="g-chat__panel"><button className="g-chat__close" onClick={() => setOpen(false)} aria-label="Close chat"><X size={14}/></button><div className="g-chat__brand"><b>Hommio</b></div><p>What brings you here today?</p><a href="#talk-to-us">Talk to Hommio</a><small>Questions about in-home retention? Talk with Hommio.</small></div>}</div>
-}
-
 export default function DTCBrands() {
   const [sampleRequestOpen, setSampleRequestOpen] = useState(false)
   const [talkFormOpen, setTalkFormOpen] = useState(false)
@@ -372,5 +370,5 @@ export default function DTCBrands() {
   const closeTalkForm = () => setTalkFormOpen(false)
   const openSampleRequest = () => setSampleRequestOpen(true)
   const closeSampleRequest = () => setSampleRequestOpen(false)
-  return <div className="givingli-site givingli-home-site dtcbrands-page"><Header onTalk={openTalkForm}/><main><Hero onTalk={openTalkForm} onSampleRequest={openSampleRequest}/><FitYourGoal/><EconomicsSection/><DTCOperationSection/><FAQ/><ContactSection onTalk={openTalkForm} onSampleRequest={openSampleRequest}/></main><ReorderMagnetForm open={sampleRequestOpen} onClose={closeSampleRequest}/><TalkToHommioForm open={talkFormOpen} onClose={closeTalkForm}/><SiteFooter/><ChatWidget/></div>
+  return <div className="givingli-site givingli-home-site dtcbrands-page"><Header onTalk={openTalkForm}/><main><Hero onTalk={openTalkForm} onSampleRequest={openSampleRequest}/><FitYourGoal/><EconomicsSection/><DTCOperationSection/><FAQ/><ContactSection onTalk={openTalkForm} onSampleRequest={openSampleRequest}/></main><ReorderMagnetForm open={sampleRequestOpen} onClose={closeSampleRequest}/><TalkToHommioForm open={talkFormOpen} onClose={closeTalkForm}/><SiteFooter/></div>
 }

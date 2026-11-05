@@ -1,6 +1,6 @@
 import SiteFooter from '../components/SiteFooter.jsx'
 import { useEffect, useRef, useState } from 'react'
-import { X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { sampleFieldNames, submitLeadAndBook } from '../lib/submitLead.js'
 import PendantLampRail, { makeGoalLamps } from '../../components/ui/pendant-lamp-rail.tsx'
 import './givingli-home.css'
@@ -77,23 +77,25 @@ const operationSteps = [
 ]
 
 function GLogo() {
-  return <a className="g-logo" href="/" aria-label="Hommio home"><span className="g-logo__crop"><img src="/assets/hommio-logo.png" alt="Hommio" /></span></a>
+  return <a className="g-logo" href="/" aria-label="Hommio home"><span className="g-logo__crop"><img src="/assets/hommio-logo-transparent.png" alt="Hommio" /></span></a>
 }
 
 function Header({ onTalk }) {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const closeMenu = () => setMenuOpen(false)
+
   return <header className="g-header"><div className="g-header__inner">
     <div className="g-header__brand"><GLogo/></div>
-    <nav className="g-nav" aria-label="Main navigation">
-      <a href="/">Hommio</a><a href="/dtcbrands">For DTC Brands</a><a href="/amazonbrands" aria-current="page">For Amazon Brands</a><a href="/philosophy">Our Philosophy</a>
+    <nav className={`g-nav${menuOpen ? ' is-open' : ''}`} id="main-navigation" aria-label="Main navigation">
+      <a href="/" onClick={closeMenu}>Hommio</a><a href="/dtcbrands" onClick={closeMenu}>For DTC Brands</a><a href="/amazonbrands" aria-current="page" onClick={closeMenu}>For Amazon Brands</a><a href="/philosophy" onClick={closeMenu}>Our Philosophy</a>
     </nav>
-    <div className="g-header__actions"><button className="g-header-button g-header-button--blue" onClick={onTalk}>Talk to Hommio</button></div>
+    <div className="g-header__actions"><button className="g-header-button g-header-button--blue" onClick={() => { closeMenu(); onTalk() }}>Talk to Hommio</button><button className="g-header__menu-toggle" type="button" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(value => !value)}>{menuOpen ? <X size={20}/> : <Menu size={20}/>}</button></div>
   </div></header>
 }
 
 function Hero({ onTalk, onSampleRequest }) {
   return <section className="g-hero amazonbrands-hero" id="top">
     <div className="amazonbrands-hero__glow" aria-hidden="true"/><div className="g-hero__title">
-      <span className="amazonbrands-eyebrow">HOMMIO for Amazon Brands</span>
       <h1>Make every Amazon order into an in-home retention point.</h1>
       <p>Amazon brings your products into customers’ homes. HOMMIO helps your brand stay there—with an in-home presence, a customer-initiated experience, and a direct way back to your products on Amazon.</p>
       <div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><button className="amazonbrands-secondary" onClick={onSampleRequest}>Request a Sample</button></div>

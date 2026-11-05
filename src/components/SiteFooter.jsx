@@ -53,7 +53,7 @@ export default function SiteFooter() {
     <div className="site-footer__main">
       <div className="site-footer__brand">
         <a className="site-footer__logo" href="/" aria-label="Hommio home">
-          <span className="site-footer__logo-crop"><img src="/assets/hommio-logo.png" alt="Hommio" /></span>
+          <span className="site-footer__logo-crop"><img src="/assets/hommio-logo-transparent.png" alt="Hommio" /></span>
         </a>
         <p>Hommio is an in-home retention solution provider for CPG brands.</p>
       </div>

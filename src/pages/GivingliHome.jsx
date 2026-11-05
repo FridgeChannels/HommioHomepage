@@ -1,6 +1,6 @@
 import SiteFooter from '../components/SiteFooter.jsx'
 import { useEffect, useRef, useState } from 'react'
-import { ArrowRight, X } from 'lucide-react'
+import { ArrowRight, Menu, X } from 'lucide-react'
 import { sampleFieldNames, submitLeadAndBook } from '../lib/submitLead.js'
 import { videos } from '../lib/videos.js'
 import './givingli-home.css'
@@ -31,25 +31,29 @@ const faqs = [
 ]
 
 function GLogo({ footer = false }) {
-  return <a className={`g-logo ${footer ? 'g-logo--footer' : ''}`} href="/" aria-label="Hommio home"><span className="g-logo__crop"><img src="/assets/hommio-logo.png" alt="Hommio" /></span></a>
+  return <a className={`g-logo ${footer ? 'g-logo--footer' : ''}`} href="/" aria-label="Hommio home"><span className="g-logo__crop"><img src="/assets/hommio-logo-transparent.png" alt="Hommio" /></span></a>
 }
 
 function Header({ onTalk }) {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const closeMenu = () => setMenuOpen(false)
+
   return <header className="g-header"><div className="g-header__inner">
     <div className="g-header__brand"><GLogo/></div>
-    <nav className="g-nav" aria-label="Main navigation">
-      <a href="#top">Hommio</a>
-      <a href="/dtcbrands">For DTC Brands</a>
-      <a href="/amazonbrands">For Amazon Brands</a>
-      <a href="/philosophy">Our Philosophy</a>
+    <nav className={`g-nav${menuOpen ? ' is-open' : ''}`} id="main-navigation" aria-label="Main navigation">
+      <a href="#top" onClick={closeMenu}>Hommio</a>
+      <a href="/dtcbrands" onClick={closeMenu}>For DTC Brands</a>
+      <a href="/amazonbrands" onClick={closeMenu}>For Amazon Brands</a>
+      <a href="/philosophy" onClick={closeMenu}>Our Philosophy</a>
     </nav>
-    <div className="g-header__actions"><button className="g-header-button g-header-button--blue" onClick={onTalk}>Talk to Hommio</button></div>
+    <div className="g-header__actions"><button className="g-header-button g-header-button--blue" onClick={() => { closeMenu(); onTalk() }}>Talk to Hommio</button><button className="g-header__menu-toggle" type="button" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(value => !value)}>{menuOpen ? <X size={20}/> : <Menu size={20}/>}</button></div>
   </div></header>
 }
 
 function HeroGiftStack({ media, position, index }) {
   const asset = media[index]
-  return <div className={`g-hero-gift-stack g-hero-gift-stack--${position}`}>
+  const orientation = asset.type === 'image' ? 'g-hero-gift-stack--landscape' : 'g-hero-gift-stack--portrait'
+  return <div role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${media.length}`} className={`g-hero-gift-stack g-hero-gift-stack--${position} ${orientation}`}>
     {asset.type === 'video'
       ? <video className="g-hero-float" src={asset.src} autoPlay muted loop playsInline aria-label={asset.alt}/>
       : <img className="g-hero-float" src={asset.src} alt={asset.alt} loading="eager" decoding="async"/>}
@@ -66,7 +70,7 @@ function Hero({ onTalk, onSampleRequest }) {
   const positions = ['left', 'right', 'lower-left', 'lower-right']
   return <section className="g-hero" id="top">
     <div className="g-hero__title"><h1>Retention <span>is</span>{' '}<em>at home</em></h1><h2>In-home retention solution for CPG brands</h2><p>Hommio helps customers remember your brand and buy from you again. We plan how to reach the right households, create a Reorder Magnet they can keep at home, and personalize what happens when they tap.</p><div className="g-hero__actions"><button onClick={onTalk}>Talk to Hommio</button><a href="#request-sample" onClick={event => { event.preventDefault(); onSampleRequest() }}>Request a Sample</a></div></div>
-    <div className="g-hero__objects" aria-hidden="true"><div className="g-hero__glow"/>{positions.map((position, index) => <HeroGiftStack key={position} position={position} index={index} media={heroMedia}/>)}</div>
+    <div className="g-hero__objects" role="region" aria-label="Hommio in the home gallery"><div className="g-hero__glow" aria-hidden="true"/>{positions.map((position, index) => <HeroGiftStack key={position} position={position} index={index} media={heroMedia}/>)}</div>
   </section>
 }
 

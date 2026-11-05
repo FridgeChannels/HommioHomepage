@@ -9,6 +9,7 @@ import AmazonBrands from './pages/amazonbrands.jsx'
 import Philosophy from './pages/Philosophy.jsx'
 import './styles/tokens.css'
 import './styles/global.css'
+import './styles/mobile-responsive.css'
 
 const route = window.location.pathname.replace(/\/$/, '')
 const Page = route === '/backup' ? Home : route === '/playground' ? Playground : route === '/givingli' ? Givingli : route === '/dtcbrands' ? DTCBrands : route === '/amazonbrands' ? AmazonBrands : route === '/philosophy' ? Philosophy : GivingliHome

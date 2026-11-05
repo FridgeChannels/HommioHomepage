@@ -21,7 +21,7 @@ const scenarios = [
 ]
 
 function Brand({ footer = false }) {
-  return <a className={`home-brand ${footer ? 'home-brand--footer' : ''}`} href="#home" aria-label="Hommio home"><span className="home-brand__crop"><img src="/assets/hommio-logo.png" alt="" /></span></a>
+  return <a className={`home-brand ${footer ? 'home-brand--footer' : ''}`} href="#home" aria-label="Hommio home"><span className="home-brand__crop"><img src="/assets/hommio-logo-transparent.png" alt="" /></span></a>
 }
 
 function MagnetScene({ showCaption = false }) {

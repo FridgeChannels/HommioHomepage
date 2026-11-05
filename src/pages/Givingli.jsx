@@ -44,7 +44,7 @@ const steps = [
 ]
 
 function GLogo({ footer = false }) {
-  return <a className={`g-logo ${footer ? 'g-logo--footer' : ''}`} href="#top" aria-label="Hommio home"><span className="g-logo__crop"><img src="/assets/hommio-logo.png" alt="Hommio" /></span></a>
+  return <a className={`g-logo ${footer ? 'g-logo--footer' : ''}`} href="#top" aria-label="Hommio home"><span className="g-logo__crop"><img src="/assets/hommio-logo-transparent.png" alt="Hommio" /></span></a>
 }
 
 function Header({ onTalk }) {
@@ -108,7 +108,7 @@ function HowItWorks({ onTalk }) {
 function ContactForm() {
   const [sent, setSent] = useState(false)
   return <section className="g-contact" id="talk-to-us"><div className="g-contact__intro"><span>Talk to Hommio</span><h2>Bring Hommio to your customers’ homes.</h2><p>Let’s build a deployment plan, Reorder Magnet, and personalized experience around your brand.</p><ul><li>Deployment planning for your brand</li><li>A Reorder Magnet designed for your customers</li><li>A personalized experience when they tap</li></ul></div><form className="g-contact-form" onSubmit={e => { e.preventDefault(); setSent(true) }}>
-    <blockquote><img src="/assets/hommio-logo.png" alt="Hommio"/><p>Retention is at home.</p><cite>Let’s build your plan</cite></blockquote>
+    <blockquote><img src="/assets/hommio-logo-transparent.png" alt="Hommio"/><p>Retention is at home.</p><cite>Let’s build your plan</cite></blockquote>
     <div className="g-contact-form__field"><label>(01) Work email <b>*</b></label><input type="email" placeholder="you@brand.com" required/></div>
     <div className="g-contact-form__field"><label>(02) Full name <b>*</b></label><input placeholder="Your name" required/></div>
     <div className="g-contact-form__field"><label>(03) Brand / company name <b>*</b></label><input placeholder="Your brand" required/></div>

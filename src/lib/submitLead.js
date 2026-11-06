@@ -1,4 +1,4 @@
-export const CALENDLY_URL = 'https://calendly.com/billy-fridgechannels/fridge-channel-pilot-meeting'
+export const BOOKING_URL = 'https://calendar.app.google/U4ZaMKyM1Sb51cgr8'
 
 export const sampleFieldNames = {
   'request-full-name': 'fullName',
@@ -51,8 +51,5 @@ export async function submitLeadAndBook({ form, source }) {
     const body = await response.json().catch(() => ({}))
     throw new Error(body.error || 'Could not save your details. Please try again.')
   }
-  const bookingUrl = new URL(CALENDLY_URL)
-  if (fullName) bookingUrl.searchParams.set('name', fullName)
-  if (workEmail) bookingUrl.searchParams.set('email', workEmail)
-  window.location.assign(bookingUrl.toString())
+  window.location.assign(BOOKING_URL)
 }

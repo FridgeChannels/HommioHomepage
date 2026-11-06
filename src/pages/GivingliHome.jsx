@@ -92,7 +92,7 @@ function CustomCard() {
 
 function ScenarioSection() {
   return <section className="g-how" id="scenarios">
-    <div className="g-section-intro"><h2>What secnario to use Hommio ?</h2></div>
+    <div className="g-section-intro"><h2>What scenario to use Hommio ?</h2></div>
     <div className="g-step-grid">
       {scenarios.map(({ image, alt, width, height }) => <article className="g-scenario-item" key={image}>
         <div className="g-scenario-art-frame"><img className="g-scenario-art" src={image} alt={alt} width={width} height={height} loading="lazy" decoding="async"/></div>

@@ -11,7 +11,7 @@ const img = (path) => `${root}${path}`
 
 const channelFit = [
   { id: 'dtc', title: 'A way back to your DTC store', copy: 'Include a Reorder Magnet with your customers’ orders. Give them a simple way to return to your products, content, or reorder page when they need it.', cta: 'Explore Hommio for DTC Brands', href: '/dtcbrands', icon: '/assets/dtc-online-store-shopify-green.svg' },
-  { id: 'amazon', title: 'A way back to your Amazon Brand Store', copy: 'Give customers a direct route from their home to your Amazon Brand Store—without starting with another search.', cta: 'Explore Hommio for Amazon Brands', href: 'https://app.notion.com/p/Amazon-40e9166fd9fd803f8f2bfa3c794f5c41?pvs=21', icon: '/assets/amazon-browser-package-icon.png' },
+  { id: 'amazon', title: 'A way back to your Amazon Brand Store', copy: 'Give customers a direct route from their home to your Amazon Brand Store—without starting with another search.', cta: 'Explore Hommio for Amazon Brands', href: '/amazonbrands', icon: '/assets/amazon-browser-package-icon.png' },
 ]
 
 const scenarios = [

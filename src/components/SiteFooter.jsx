@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react'
 import { Mail, MessageCircle, MessageSquareText } from 'lucide-react'
 import './site-footer.css'
 
@@ -11,44 +10,12 @@ const links = [
 ]
 
 const contacts = [
-  { label: 'Email', value: 'ella@fridgechannels.com', showValue: false, icon: Mail },
-  { label: 'WhatsApp', value: '+1 (620) 894-1711', showValue: false, icon: MessageCircle },
-  { label: 'SMS', value: '+1 (620) 894-1711', showValue: false, icon: MessageSquareText },
+  { label: 'Email', recipient: 'ella@fridgechannels.com', href: 'mailto:ella@fridgechannels.com', icon: Mail },
+  { label: 'WhatsApp', recipient: '+1 (620) 894-1711', href: 'https://wa.me/16208941711', icon: MessageCircle },
+  { label: 'SMS', recipient: '+1 (620) 894-1711', href: 'sms:+16208941711', icon: MessageSquareText },
 ]
 
 export default function SiteFooter() {
-  const [copyStatus, setCopyStatus] = useState(null)
-  const copyTimerRef = useRef(0)
-
-  useEffect(() => () => window.clearTimeout(copyTimerRef.current), [])
-
-  async function copyContact(label, text, button) {
-    let copied = false
-    try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(text)
-        copied = true
-      }
-    } catch {
-      // Use the fallback when clipboard access is unavailable.
-    }
-    if (!copied) {
-      const field = document.createElement('textarea')
-      field.value = text
-      field.setAttribute('readonly', '')
-      field.style.cssText = 'position:fixed;top:0;left:0;opacity:0;'
-      document.body.appendChild(field)
-      field.focus()
-      field.select()
-      try { copied = document.execCommand('copy') } catch { copied = false }
-      field.remove()
-      button?.focus({ preventScroll: true })
-    }
-    window.clearTimeout(copyTimerRef.current)
-    setCopyStatus({ label, message: copied ? 'Copied ✓' : 'Unable to copy' })
-    copyTimerRef.current = window.setTimeout(() => setCopyStatus(null), 2500)
-  }
-
   return <footer className="site-footer" id="footer">
     <div className="site-footer__main">
       <div className="site-footer__brand">
@@ -66,14 +33,13 @@ export default function SiteFooter() {
       <div className="site-footer__contact" aria-label="Contact channels">
         <h2>Get in touch</h2>
         <ul>
-          {contacts.map(({ label, value, showValue = true, icon: Icon }) => <li key={label}>
-            <button type="button" onClick={event => copyContact(label, value, event.currentTarget)} aria-label={`Copy ${label}`}>
+          {contacts.map(({ label, recipient, href, icon: Icon }) => <li key={label}>
+            <a href={href} aria-label={`${label}: ${recipient}`}>
               <Icon aria-hidden="true"/>
-              <span className="site-footer__contact-copy"><span className="site-footer__contact-heading"><span>{label}</span><span className="site-footer__copy-status" aria-hidden="true">{copyStatus?.label === label ? copyStatus.message : ''}</span></span>{value && showValue && <small className="site-footer__contact-value">{value}</small>}</span>
-            </button>
+              <span className="site-footer__contact-copy"><span className="site-footer__contact-heading"><span>{label}</span></span></span>
+            </a>
           </li>)}
         </ul>
-        <span className="site-footer__copy-announcement" role="status" aria-live="polite">{copyStatus ? `${copyStatus.label}: ${copyStatus.message}` : ''}</span>
       </div>
     </div>
 

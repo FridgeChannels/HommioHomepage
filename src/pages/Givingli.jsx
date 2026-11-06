@@ -17,7 +17,7 @@ const heroSlides = [
 
 const channelFit = [
   { id: 'dtc', title: 'A way back to your DTC store.', copy: 'Include a Reorder Magnet with your customers’ orders. Give them a simple way to return to your products, content, or reorder page when they need it.', cta: 'Explore Hommio for DTC Brands', href: 'https://app.notion.com/p/DTC-40e9166fd9fd80338d73d17c239779df?pvs=21', icon: '↗' },
-  { id: 'amazon', title: 'A way back to your Amazon Brand Store.', copy: 'Give customers a direct route from their home to your Amazon Brand Store—without starting with another search.', cta: 'Explore Hommio for Amazon Brands', href: 'https://app.notion.com/p/Amazon-40e9166fd9fd803f8f2bfa3c794f5c41?pvs=21', icon: '⌂' },
+  { id: 'amazon', title: 'A way back to your Amazon Brand Store.', copy: 'Give customers a direct route from their home to your Amazon Brand Store—without starting with another search.', cta: 'Explore Hommio for Amazon Brands', href: '/amazonbrands', icon: '⌂' },
 ]
 
 const scenarios = [

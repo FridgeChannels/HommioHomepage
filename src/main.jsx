@@ -1,8 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import Playground from './pages/Playground.jsx'
 import Home from './pages/Home.jsx'
-import Givingli from './pages/Givingli.jsx'
 import GivingliHome from './pages/GivingliHome.jsx'
 import DTCBrands from './pages/dtcbrands.jsx'
 import AmazonBrands from './pages/amazonbrands.jsx'
@@ -12,7 +10,7 @@ import './styles/global.css'
 import './styles/mobile-responsive.css'
 
 const route = window.location.pathname.replace(/\/$/, '')
-const Page = route === '/backup' ? Home : route === '/playground' ? Playground : route === '/givingli' ? Givingli : route === '/dtcbrands' ? DTCBrands : route === '/amazonbrands' ? AmazonBrands : route === '/philosophy' ? Philosophy : GivingliHome
+const Page = route === '/backup' ? Home : route === '/dtcbrands' ? DTCBrands : route === '/amazonbrands' ? AmazonBrands : route === '/philosophy' ? Philosophy : GivingliHome
 
 if (window.parent !== window) {
   const parentOrigin = (() => {

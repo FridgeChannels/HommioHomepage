@@ -51,4 +51,4 @@ Tokens are centralized in `src/styles/tokens.css` and should be used in componen
 
 ## Preview
 
-Run `npm install` and `npm run dev`, then open `/` for the Hommio homepage or `/playground` for the component library. The playground shows every exported component, variants, form states, token swatches, and type/spacing/radius references.
+Run `npm install` and `npm run dev`, then open `/` for the Hommio homepage. Shared components remain available from `components/ui` for use across product pages.

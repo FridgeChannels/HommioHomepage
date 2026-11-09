@@ -10,7 +10,7 @@ const links = [
 ]
 
 const contacts = [
-  { label: 'Email', recipient: 'ella@fridgechannels.com', href: 'mailto:ella@fridgechannels.com', icon: Mail },
+  { label: 'Email', recipient: 'ella@hommio.ai', href: 'mailto:ella@hommio.ai', icon: Mail },
   { label: 'WhatsApp', recipient: '+1 (620) 894-1711', href: 'https://wa.me/16208941711', icon: MessageCircle },
   { label: 'SMS', recipient: '+1 (620) 894-1711', href: 'sms:+16208941711', icon: MessageSquareText },
 ]

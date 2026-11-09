@@ -10,7 +10,6 @@ const faqs = [
   { question: 'Where can a tap take customers?', answer: 'Customers can open product pages, useful content, surveys, or reorder options. When they are ready to buy, the experience can take them to your DTC store or Amazon Brand Store.' },
   { question: 'Can the digital experience be updated?', answer: 'Yes. The experience can change as you learn, without replacing the magnet.' },
   { question: 'How does Hommio personalize the experience?', answer: 'With customer permission and available data, Hommio uses shared preferences, interactions, and reorder habits to help personalize products, content, and reorder options.' },
-  { question: 'How much does it cost?', answer: 'Pricing consists of volume-based product pricing, applicable design fees, and performance-based commissions. Visit Pricing & ROI Calculator to explore the pricing and estimate a scenario for your brand.' },
 ]
 
 const scenarios = [
